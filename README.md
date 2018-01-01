@@ -1,7 +1,7 @@
 # E-Stroe_ssh
 An E-store based on Struts2, Hibernate and Spring.
 
-##STEP1: Database design:
+## STEP1: Database design:
 	DataBase Design:
 		User table:
 			user_id
@@ -47,4 +47,4 @@ An E-store based on Struts2, Hibernate and Spring.
 			middle_order_id,
 			middle_number,
 			middle_subtotal
-	![](https://github.com/Seanforfun/E-Stroe_ssh/raw/master/readme_resource/Database_relationship.jpg)
+	![](https://github.com/Seanforfun/E-Store_ssh/raw/master/readme_resource/Database_relationship.jpg)
