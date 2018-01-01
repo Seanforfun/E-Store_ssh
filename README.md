@@ -47,4 +47,5 @@ An E-store based on Struts2, Hibernate and Spring.
 			middle_order_id,
 			middle_number,
 			middle_subtotal
-	![](https://github.com/Seanforfun/E-Store_ssh/raw/master/readme_resource/Database_relationship.jpg)
+			
+	![Database relationship](https://github.com/Seanforfun/E-Stroe_ssh/blob/master/readme_resource/Database_relationship.jpg)
