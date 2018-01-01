@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 <title>Register</title>
@@ -11,24 +11,44 @@
 <body>
 <script type="text/javascript">
 	function checkForm(){
-		var username = documment.getElementById("username").value;
-		if(username == ''){
-			var span = documment.getElementById("usernameSpan")
-			span.innerHTML = "username is required!"
-			alert("username is required!");
-			return false;
+		var username = document.getElementById("username").value;
+		var flag = true;
+		if(username == ""|| username.length == 0){
+			var span1 = document.getElementById("usernameSpan");
+			span1.innerHTML = "Username required!"
+			flag = false;
 		}
-		var password = documment.getElementById("password").value;
-		if(password == ''){
-			alert("password is required!");
-			return false;
+		var password = document.getElementById("password").value;
+		if(password == ""){
+			var span2 = document.getElementById("passwordSpan");
+			span2.innerHTML = "Password required!"
+			flag = false;
 		}
-		var repassword = documment.getElementById("repassword").value;
+		var repassword = document.getElementById("repassword").value;
 		if(repassword != password){
-			alert("password should be same!");
-			return false;
+			var span3 = document.getElementById("repasswordSpan");
+			span3.innerHTML = "password should be same!"
+			flag = false;
 		}
-		return true;
+		var email = document.getElementById("email").value.trim();
+		if(email == "" || email.length == 0){
+			var span4 = document.getElementById("emailSpan");
+			span4.innerHTML = "E-mail required!"
+			flag = false;
+		}else{
+			var reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+			if(!reg.test(email)){
+				var span4 = document.getElementById("emailSpan");
+				span4.innerHTML = "Please use a correct e-mail!"
+				flag = false;
+			}
+		}
+		return flag;
+	}
+	
+	function removeSpanContent(id){
+		var span = document.getElementById(id);
+		span.innerHTML = "";
 	}
 </script>
 <div class="container header">
@@ -136,14 +156,14 @@
 					<div class="title">
 						<strong>User Register</strong>
 					</div>
-					<form id="registerForm"  method="post" novalidate="novalidate" onsubmit="return checkForm();">
+					<form id="registerForm"  method="post" onsubmit="return checkForm();">
 						<table>
 							<tbody><tr>
 								<th>
 									<span class="requiredField">*</span>Username:
 								</th>
 								<td>
-									<input type="text" id="username" name="username" class="text" maxlength="20">
+									<input type="text" id="username" name="username" class="text" maxlength="20" onclick="removeSpanContent('usernameSpan')">
 									<span id="usernameSpan"></span>
 								</td>
 							</tr>
@@ -152,7 +172,8 @@
 									<span class="requiredField">*</span>Password:
 								</th>
 								<td>
-									<input type="password" id="password" name="password" class="text" maxlength="20" autocomplete="off">
+									<input type="password" id="password" name="password" class="text" maxlength="20" onclick="removeSpanContent('passwordSpan')">
+									<span id="passwordSpan"></span>
 								</td>
 							</tr>
 							<tr>
@@ -160,7 +181,8 @@
 									<span class="requiredField">*</span>Re-password:
 								</th>
 								<td>
-									<input type="password" id="repassword" name="repassword" class="text" maxlength="20" autocomplete="off">
+									<input type="password" id="repassword" name="repassword" class="text" maxlength="20" onclick="removeSpanContent('repasswordSpan')">
+									<span id="repasswordSpan"></span>
 								</td>
 							</tr>
 							<tr>
@@ -168,7 +190,8 @@
 									<span class="requiredField">*</span>E-mail:
 								</th>
 								<td>
-									<input type="text" id="email" name="email" class="text" maxlength="200">
+									<input type="text" id="email" name="email" class="text" maxlength="200" onclick="removeSpanContent('emailSpan')">
+									<span id="emailSpan"></span>
 								</td>
 							</tr>
 									<tr>
@@ -176,7 +199,7 @@
 											Name:
 										</th>
 										<td>
-												<input type="text" name="memberAttribute_1" class="text" maxlength="200">
+												<input type="text" name="memberAttribute_1" class="text" maxlength="200" >
 										</td>
 									</tr>
 									<tr>
@@ -216,7 +239,7 @@
 									</th>
 									<td>
 										<span class="fieldSet">
-											<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4" autocomplete="off"><img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/image/captcha.jhtml" title="点击更换验证码">
+											<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4"><img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/image/captcha.jhtml" title="点击更换验证码">
 										</span>
 									</td>
 								</tr>
@@ -322,4 +345,4 @@
 		<div class="copyright">Copyright © 2005-2018 Seanforfun</div>
 	</div>
 </div>
-<div id="_my97DP" style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 190px; height: 191px;" src="./会员注册 - Powered By Mango Team_files/My97DatePicker.htm" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>
+<div id="_my97DP" style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 190px; height: 191px;" src="./会员注册 - Powered By Mango Team_files/My97DatePicker.htm" frameborder="0" scrolling="no"></iframe></div></body></html>
