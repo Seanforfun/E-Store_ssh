@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+	
+	<hibernate-configuration>
+		<session-factory>
+			<!-- Required options -->
+			<!-- Select the dialect for hibernate, more specific, what kind of SQL hibernate is transfering to -->
+			<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+			<!-- JDBC driver class -->
+			<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+			<!-- url to database -->
+			<property name="hibernate.connection.url">jdbc:mysql:///estore</property>
+			<!--  Username and password for database-->
+			<property name="hibernate.connection.username">root</property>
+			<property name="hibernate.connection.password">911023</property>
+			
+			<!-- Optional-->
+			<!-- Show sql commands -->
+			<property name="hibernate.show_sql">true</property>
+			<!-- Show sql commands in format -->
+			<property name="hibernate.format_sql">true</property>
+			<!--  Hibernate use table method-->
+			<property name="hibernate.hbm2ddl.auto">update</property>
+			
+			
+			<!-- Second level cache -->
+		<!-- 	<property name="hibernate.cache.use_second_level_cache">true</property>
+			<property name="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</property> -->
+			<property name="hibernate.current_session_context_class">thread</property>
+			
+			<!-- C3P0 connection-->
+			<property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+			<property name="c3p0.min_size">5</property>	
+			<property name="c3p0.max_size">20</property>	
+			<property name="c3p0.timeout">120</property>
+			<property name="c3p0.idle_test_period">3000</property>
+			
+			<!--  Bean mapping-->
+		</session-factory>	
+	</hibernate-configuration>
+
+	
