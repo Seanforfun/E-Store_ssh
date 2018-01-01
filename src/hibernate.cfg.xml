@@ -39,6 +39,7 @@
 			<property name="c3p0.idle_test_period">3000</property>
 			
 			<!--  Bean mapping-->
+			<mapping resource="ca/mcmaster/shop/user/User.hbm.xml"/>
 		</session-factory>	
 	</hibernate-configuration>
 

@@ -12,6 +12,10 @@
         <action name="index" class="indexAction" method="execute">
         	<result name="indexSuccess"  type="redirect">/jsp/index.jsp</result>
         </action>
+        
+        <action name="user_*" class="userAction" method="{1}">
+        	<result name="registerPageSuccess" type="redirect">/jsp/register.jsp</result>
+        </action>
     </package>
 
 </struts>

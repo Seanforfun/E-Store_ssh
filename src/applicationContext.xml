@@ -28,4 +28,5 @@
 	
 	<!-- Define beans  -->
 	<bean id="indexAction" class="ca.mcmaster.shop.index.IndexAction" scope="prototype"/>
+	<bean id="userAction" class="ca.mcmaster.shop.user.UserAction" scope="prototype"/>
 </beans>

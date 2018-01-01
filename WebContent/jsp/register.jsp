@@ -1,87 +1,111 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-<title>会员注册 - Powered By Mango Team</title>
-<link href="./css/common.css" rel="stylesheet" type="text/css"/>
-<link href="./css/register.css" rel="stylesheet" type="text/css"/>
+<title>Register</title>
+<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="${pageContext.request.contextPath}/css/register.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<script type="text/javascript">
+	function checkForm(){
+		var username = documment.getElementById("username").value;
+		if(username == ''){
+			var span = documment.getElementById("usernameSpan")
+			span.innerHTML = "username is required!"
+			alert("username is required!");
+			return false;
+		}
+		var password = documment.getElementById("password").value;
+		if(password == ''){
+			alert("password is required!");
+			return false;
+		}
+		var repassword = documment.getElementById("repassword").value;
+		if(repassword != password){
+			alert("password should be same!");
+			return false;
+		}
+		return true;
+	}
+</script>
 <div class="container header">
 	<div class="span5">
 		<div class="logo">
 			<a href="http://localhost:8080/mango/">
-				<img src="./image/r___________renleipic_01/logo.gif" alt="传智播客">
+				<img src="${pageContext.request.contextPath}/image/logo.png" alt="Seanforfunlogo" style="width: 250px; height: 50px; "/>
 			</a>
 		</div>
 	</div>
 	<div class="span9">
 <div class="headerAd">
-					<img src="./image/header.jpg" width="320" height="50" alt="正品保障" title="正品保障">
+					<img src="${pageContext.request.contextPath}/image/header.jpg" width="320" height="50" alt="正品保障" title="正品保障">
 </div>	</div>
 	<div class="span10 last">
 		<div class="topNav clearfix">
 			<ul>
 				<li id="headerLogin" class="headerLogin" style="display: list-item;">
-					<a href="./会员登录.htm">登录</a>|
+					<a href="./会员登录.htm">Login</a>|
 				</li>
 				<li id="headerRegister" class="headerRegister" style="display: list-item;">
-					<a href="./会员注册.htm">注册</a>|
+					<a href="./会员注册.htm">Register</a>|
 				</li>
 				<li id="headerUsername" class="headerUsername"></li>
 				<li id="headerLogout" class="headerLogout">
-					<a href="./index.htm" >[退出]</a>|
+					<a href="./index.htm" >[Exit]</a>|
 				</li>
 						<li>
-							<a>会员中心</a>
+							<a>Membership</a>
 							|
 						</li>
 						<li>
-							<a>购物指南</a>
+							<a>Shopping guide</a>
 							|
 						</li>
 						<li>
-							<a>关于我们</a>
+							<a>About me</a>
 							
 						</li>
 			</ul>
 		</div>
 		<div class="cart">
-			<a href="./购物车.htm">购物车</a>
+			<a href="./购物车.htm">Cart</a>
 		</div>
 			<div class="phone">
-				客服热线:
-				<strong>96008/53277764</strong>
+				Contact:
+				<strong>Seanforfun</strong>
 			</div>
 	</div>
 	<div class="span24">
 		<ul class="mainNav">
 					<li>
-						<a href="./index.htm">首页</a>
+						<a href="./index.htm">Main page</a>
 						|
 					</li>
 					<li>
-						<a href="./蔬菜分类.htm">定制套餐</a>
+						<a href="./蔬菜分类.htm">Custom combos</a>
 						|
 					</li>
 					<li>
-						<a >安全频道</a>
+						<a >item</a>
 						|
 					</li>
 					<li>
-						<a>亿家卡</a>
+						<a>item</a>
 						|
 					</li>
 					<li>
-						<a >蔬菜基地</a>
+						<a>item</a>
 						|
 					</li>
 					<li>
-						<a>节气养生</a>
+						<a>item</a>
 						|
 					</li>
 					<li>
-						<a>便民服务</a>
+						<a>item</a>
 						|
 					</li>
 					
@@ -91,28 +115,16 @@
 		<div class="tagWrap">
 			<ul class="tag">
 						<li class="icon" style="background: url(http://storage.shopxx.net/demo-image/3.0/tag/hot.gif) right no-repeat;">
-							<a >热销</a>
+							<a >Hot</a>
 						</li>
 						<li class="icon" style="background: url(http://storage.shopxx.net/demo-image/3.0/tag/new.gif) right no-repeat;">
-							<a>最新</a>
+							<a>New</a>
 						</li>
 			</ul>
-			<div class="hotSearch">
-					热门搜索:
-						<a >水蜜桃</a>
-						<a>西瓜</a>
-						<a>紫薯</a>
-						<a>大米</a>
-						<a>玉米</a>
-						<a>茄子</a>
-						<a>辣椒</a>
-						<a>圣女果</a>
-						<a>鱿鱼丝</a>
-			</div>
 			<div class="search">
 				<form id="productSearchForm" method="get">
-					<input name="keyword" class="keyword" value="商品搜索" maxlength="30">
-					<button type="submit">搜索</button>
+					<input name="keyword" class="keyword" value="Product search" maxlength="30">
+					<button type="submit">search</button>
 				</form>
 			</div>
 		</div>
@@ -122,21 +134,22 @@
 			<div class="wrap">
 				<div class="main clearfix">
 					<div class="title">
-						<strong>会员注册</strong>USER REGISTER
+						<strong>User Register</strong>
 					</div>
-					<form id="registerForm"  method="post" novalidate="novalidate">
+					<form id="registerForm"  method="post" novalidate="novalidate" onsubmit="return checkForm();">
 						<table>
 							<tbody><tr>
 								<th>
-									<span class="requiredField">*</span>用户名:
+									<span class="requiredField">*</span>Username:
 								</th>
 								<td>
 									<input type="text" id="username" name="username" class="text" maxlength="20">
+									<span id="usernameSpan"></span>
 								</td>
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>密&nbsp;&nbsp;码:
+									<span class="requiredField">*</span>Password:
 								</th>
 								<td>
 									<input type="password" id="password" name="password" class="text" maxlength="20" autocomplete="off">
@@ -144,10 +157,10 @@
 							</tr>
 							<tr>
 								<th>
-									<span class="requiredField">*</span>确认密码:
+									<span class="requiredField">*</span>Re-password:
 								</th>
 								<td>
-									<input type="password" name="rePassword" class="text" maxlength="20" autocomplete="off">
+									<input type="password" id="repassword" name="repassword" class="text" maxlength="20" autocomplete="off">
 								</td>
 							</tr>
 							<tr>
@@ -160,7 +173,7 @@
 							</tr>
 									<tr>
 										<th>
-											姓名:
+											Name:
 										</th>
 										<td>
 												<input type="text" name="memberAttribute_1" class="text" maxlength="200">
@@ -168,22 +181,22 @@
 									</tr>
 									<tr>
 										<th>
-											性别:
+											Gender:
 										</th>
 										<td>
 												<span class="fieldSet">
 														<label>
-															<input type="radio" name="memberAttribute_2" value="male">男
+															<input type="radio" name="memberAttribute_2" value="male">male
 														</label>
 														<label>
-															<input type="radio" name="memberAttribute_2" value="female">女
+															<input type="radio" name="memberAttribute_2" value="female">female
 														</label>
 												</span>
 										</td>
 									</tr>
 									<tr>
 										<th>
-											出生日期:
+											Date of Birth:
 										</th>
 										<td>
 												<input type="text" name="memberAttribute_3" class="text" onfocus="WdatePicker();">
@@ -191,17 +204,7 @@
 									</tr>
 									<tr>
 										<th>
-											地区:
-										</th>
-										<td>
-												<span class="fieldSet">
-													<input type="hidden" id="areaId" name="memberAttribute_4"><select name="memberAttribute_4_select" style="margin-right: 4px;"><option value="">请选择...</option><option value="1">北京市</option><option value="18">天津市</option><option value="35">河北省</option><option value="219">山西省</option><option value="351">内蒙古自治区</option><option value="465">辽宁省</option><option value="580">吉林省</option><option value="650">黑龙江省</option><option value="792">上海市</option><option value="810">江苏省</option><option value="926">浙江省</option><option value="1028">安徽省</option><option value="1150">福建省</option><option value="1245">江西省</option><option value="1357">山东省</option><option value="1515">河南省</option><option value="1692">湖北省</option><option value="1809">湖南省</option><option value="1946">广东省</option><option value="2089">广西壮族自治区</option><option value="2213">海南省</option><option value="2240">重庆市</option><option value="2279">四川省</option><option value="2482">贵州省</option><option value="2580">云南省</option><option value="2726">西藏自治区</option><option value="2807">陕西省</option><option value="2925">甘肃省</option><option value="3026">青海省</option><option value="3078">宁夏回族自治区</option><option value="3106">新疆维吾尔自治区</option><option value="3219">台湾省</option><option value="3292">香港特别行政区</option><option value="3314">澳门特别行政区</option></select>
-												</span>
-										</td>
-									</tr>
-									<tr>
-										<th>
-											地址:
+											Address:
 										</th>
 										<td>
 												<input type="text" name="memberAttribute_5" class="text" maxlength="200">
@@ -209,11 +212,11 @@
 									</tr>
 								<tr>
 									<th>
-										<span class="requiredField">*</span>验证码:
+										<span class="requiredField">*</span>Verify code:
 									</th>
 									<td>
 										<span class="fieldSet">
-											<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4" autocomplete="off"><img id="captchaImage" class="captchaImage" src="./image/captcha.jhtml" title="点击更换验证码">
+											<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4" autocomplete="off"><img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/image/captcha.jhtml" title="点击更换验证码">
 										</span>
 									</td>
 								</tr>
@@ -222,7 +225,7 @@
 									
 								</th>
 								<td>
-									<input type="submit" class="submit" value="同意以下协议并注册">
+									<input type="submit" class="submit" value="Agree and submit">
 								</td>
 							</tr>
 							<tr>
@@ -230,7 +233,7 @@
 									
 								</th>
 								<td>
-									注册协议
+									Register protocol
 								</td>
 							</tr>
 							<tr>
@@ -248,23 +251,20 @@
 <div class="ad">
 					<dl>
 	<dt>
-		注册即享受
+		Register to enjoy:
 	</dt>
 	<dd>
-		正品保障、正规发票
+		Membership service
 	</dd>
 	<dd>
-		货到付款、会员服务
-	</dd>
-	<dd>
-		自由退换、售后上门
+		30 days no reason return
 	</dd>
 </dl>
 </div>							<dl>
-								<dt>已经拥有账号了？</dt>
+								<dt>Already have an account?</dt>
 								<dd>
-									立即登录即可体验在线购物！
-									<a href="./会员登录.htm">立即登录</a>
+									Login now to enjoy shopping!
+									<a href="./会员登录.htm">Login</a>
 								</dd>
 							</dl>
 						</div>
@@ -276,50 +276,50 @@
 <div class="container footer">
 	<div class="span24">
 		<div class="footerAd">
-					<img src="./image/footer.jpg" width="950" height="52" alt="我们的优势" title="我们的优势">
+					<img src="${pageContext.request.contextPath}/image/footer.jpg" width="950" height="52" alt="我们的优势" title="我们的优势">
 </div>	</div>
 	<div class="span24">
 		<ul class="bottomNav">
 					<li>
-						<a >关于我们</a>
+						<a>About us</a>
 						|
 					</li>
 					<li>
-						<a >联系我们</a>
+						<a>Contect me</a>
 						|
 					</li>
 					<li>
-						<a >招贤纳士</a>
+						<a>Hire me</a>
 						|
 					</li>
 					<li>
-						<a>法律声明</a>
+						<a>Legal Notices</a>
 						|
 					</li>
 					<li>
-						<a >友情链接</a>
+						<a>Blogroll</a>
 						|
 					</li>
 					<li>
-						<a  target="_blank">支付方式</a>
+						<a target="_blank">Pay method</a>
 						|
 					</li>
 					<li>
-						<a  target="_blank">配送方式</a>
+						<a target="_blank">Delivery</a>
 						|
 					</li>
 					<li>
-						<a>服务声明</a>
+						<a>Service invoicement</a>
 						|
 					</li>
 					<li>
-						<a >广告声明</a>
+						<a>Advertisement</a>
 						
 					</li>
 		</ul>
 	</div>
 	<div class="span24">
-		<div class="copyright">Copyright © 2005-2013 Mango商城 版权所有</div>
+		<div class="copyright">Copyright © 2005-2018 Seanforfun</div>
 	</div>
 </div>
 <div id="_my97DP" style="position: absolute; top: -1970px; left: -1970px;"><iframe style="width: 190px; height: 191px;" src="./会员注册 - Powered By Mango Team_files/My97DatePicker.htm" frameborder="0" border="0" scrolling="no"></iframe></div></body></html>

@@ -7,6 +7,7 @@ An E-store based on Struts2, Hibernate and Spring.
 			user_id
 			user_username,
 			user_password,
+			user_phone,
 			user_e-mail,
 			user_name,
 			user_gender,
@@ -105,3 +106,4 @@ An E-store based on Struts2, Hibernate and Spring.
 		hibernate.cfg.xml
 		log4j.properties
 		struts.xml
+## STEP3: Create index page and login page.

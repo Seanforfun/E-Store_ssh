@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+        <hibernate-mapping>
+        	<class name="ca.mcmaster.shop.user.User" table="user">
+        		<id name="user_id" column="user_id">
+        			<generator class="native"/>
+        		</id>
+        		<property name="user_username" length="40"/>
+        		<property name="user_password" length="40"/>
+        		<property name="user_phone" length="20"/>
+        		<property name="user_email" length="100"/>
+        		<property name="user_name" length="50"/>
+        		<property name="user_gender" length="10"/>
+        		<property name="user_address" length="100"/>
+        		<property name="user_status"/>
+        		<property name="user_activative_code" length="100"/>
+        	</class>
+        </hibernate-mapping>
