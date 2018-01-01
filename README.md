@@ -50,7 +50,7 @@ An E-store based on Struts2, Hibernate and Spring.
 
 ![](https://github.com/Seanforfun/E-Stroe_ssh/raw/master/readme_resource/Database_relationship.jpg)
 	
-##STEP2: Import Jar , configuration files and static web page:
+## STEP2: Import Jar , configuration files and static web page:
 	Import jar for struts, hibernate and spring.	
 		antlr-2.7.6.jar
 		asm-3.3.jar
