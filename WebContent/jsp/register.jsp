@@ -96,7 +96,7 @@
 	}
 	
 	/*Refresh verify code picture*/
-	function checkcode(){
+	function changeCheckcode(){
 		var img = document.getElementById("checkcodeImage");
 		img.src = "${pageContext.request.contextPath}/user_checkcode?time=" + new Date().getTime().toString();
 	}
@@ -208,7 +208,7 @@
 						<strong>User Register</strong>
 					</div>
 					<s:fielderror/>
-					<form id="registerForm"  action="${pageContext.request. contextPath}/user_register" method="post" onsubmit="return verifyCheckcode()">
+					<form id="registerForm"  action="${pageContext.request. contextPath}/user_register" method="post" onsubmit="return checkForm();">
 						<table>
 							<tbody><tr>
 								<th>
@@ -283,8 +283,8 @@
 									</th>
 									<td>
 										<span class="fieldSet">
-											<input type="text" id="checkcodeId" name="checkcode" class="text captcha" maxlength="4" onblur="verifyCheckcode()">
-											<img id="checkcodeImage" class="captchaImage" src="${pageContext.request.contextPath}/user_checkcode" onclick="checkcode()">
+											<input type="text" id="checkcodeId" name="checkcode" class="text captcha" maxlength="4" onblur="verifyCheckcode()" onclick="removeSpanContent('checkcodeSpan')">
+											<img id="checkcodeImage" class="captchaImage" src="${pageContext.request.contextPath}/user_checkcode" onclick="changeCheckcode()">
 											<span id="checkcodeSpan"></span>
 										</span>
 									</td>

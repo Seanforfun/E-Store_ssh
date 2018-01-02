@@ -31,7 +31,7 @@ public class UserService {
 		user.setUser_activative_code(UUIDUtils.getUUID());
 		userDao.save(user);
 		if(null != user.getUser_email()){
-			MailUtils.sendEmail(user.getUser_email(), user.getUser_activative_code());
+			MailUtils.sendActiveEmail(user);
 		}
 	}
 

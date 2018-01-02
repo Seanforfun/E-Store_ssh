@@ -17,7 +17,6 @@ import ca.mcmaster.shop.ReturnType.ReturnResult;
 import ca.mcmaster.shop.utils.CheckCode;
 import ca.mcmaster.shop.utils.CheckCodeUtils;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
