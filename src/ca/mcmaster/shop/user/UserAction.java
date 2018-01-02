@@ -2,6 +2,7 @@ package ca.mcmaster.shop.user;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -35,7 +36,7 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private String checkcode = new String();
 	private String repassword;
 	private String isRememberUsername;
-	
+
 	public void setIsRememberUsername(String isRememberUsername) {
 		this.isRememberUsername = isRememberUsername;
 	}
@@ -78,13 +79,16 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
 	public String checkcode() throws IOException {
 		CheckCode code = CheckCodeUtils.drawCheckcode();
-		ServletActionContext.getContext().getSession().put("verify", code.getCheckCode());
-		ImageIO.write(code.getBufferedImage(), "jpg", ServletActionContext.getResponse().getOutputStream());
+		ServletActionContext.getContext().getSession()
+				.put("verify", code.getCheckCode());
+		ImageIO.write(code.getBufferedImage(), "jpg", ServletActionContext
+				.getResponse().getOutputStream());
 		return null;
 	}
 
 	public String verify() throws IOException {
-		String correct = (String) ServletActionContext.getContext().getSession().get("verify");
+		String correct = (String) ServletActionContext.getContext()
+				.getSession().get("verify");
 		Map<String, String> map = new HashMap<String, String>();
 		if (checkcode.toLowerCase().equals(correct.toLowerCase())) {
 			map.put("result", "true");
@@ -92,7 +96,8 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			map.put("result", "Checkcode doesn't match!");
 		}
 		JSONObject jsonObject = JSONObject.fromObject(map);
-		ServletActionContext.getResponse().getWriter().println(jsonObject.toString());
+		ServletActionContext.getResponse().getWriter()
+				.println(jsonObject.toString());
 		return NONE;
 	}
 
@@ -120,21 +125,60 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
 	@InputConfig(resultName = "loginInput")
 	public String login() {
-		if(isRememberUsername.equals("true")){
-			Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		String correct = (String) ServletActionContext.getContext()
+				.getSession().get("verify");
+		if(null != checkcode){
+			if(checkcode.toUpperCase().equals(correct.toUpperCase())){
+				if (isRememberUsername != null && isRememberUsername.equals("true")) {
+					boolean remember = false;
+					Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+					for (Cookie cookie : cookies) {
+						if (cookie.getName().equals("remember")) {
+							remember = true;
+							break;
+						}
+					}
+
+					if (remember == false) {
+						Cookie cookie = new Cookie("remember", user.getUser_username());
+						ServletActionContext.getResponse().addCookie(cookie);
+					}
+				}
+				DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
+				criteria.add(Restrictions.eq("user_username", user.getUser_username()))
+						.add(Restrictions.eq("user_password", user.getUser_password()))
+						.add(Restrictions.eq("user_status", 1));
+				User ret = userService.login(criteria);
+				if (ret == null) {
+					this.addActionError("Login Failed! Try again!");
+					return "loginInput";
+				} else {
+					Map<String, Object> session = ServletActionContext.getContext()
+							.getSession();
+					session.put("existUser", ret);
+					return "loginSuccess";
+				}
+			}else {
+				this.addActionError("Login failed! Incorrent checkcode!");
+				return "loginInput"; 
+			}
+		}else {
+			this.addActionError("Please fill all terms!");
+			return "loginInput"; 
 		}
-		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
-		criteria.add(Restrictions.eq("user_username", user.getUser_username()))
-				.add(Restrictions.eq("user_password", user.getUser_password()))
-				.add(Restrictions.eq("user_status", 1));
-		User ret = userService.login(criteria);
-		if(ret == null){
-			this.addActionError("User doesen't exits! Try again!");
-			return "loginInput";
-		}else{
-			Map<String, Object> session = ServletActionContext.getContext().getSession();
-			session.put("existUser", ret);
-			return "loginSuccess";
+	}
+
+	public String checkUsernameExist() throws IOException {
+		List<User> list = userService
+				.getUserByUsername(user.getUser_username());
+		System.out.println(list);
+		if (!list.isEmpty()) {
+			ServletActionContext.getResponse().getWriter()
+					.println("<font color='red'>Invalid username!</font>");
+		} else {
+			ServletActionContext.getResponse().getWriter()
+					.println("<font color='green'>Valid username!</font>");
 		}
+		return null;
 	}
 }

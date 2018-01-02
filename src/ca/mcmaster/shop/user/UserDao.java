@@ -34,4 +34,9 @@ public class UserDao extends HibernateDaoSupport {
 		List<User> list = this.getHibernateTemplate().findByCriteria(criteria);
 		return list.get(0);
 	}
+
+	public List<User> getUserByUsername(String username) {
+		List<User> list = this.getHibernateTemplate().find("from User where user_username = ?", username);
+		return list;
+	}
 }

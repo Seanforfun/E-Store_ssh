@@ -2,15 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags"  prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-<title>Login</title>
-<meta name="author" content="Mango Team">
-<meta name="copyright" content="Mango">
-<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css">
-
-
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Login</title>
+	<meta name="author" content="Seanforfun">
+	<meta name="copyright" content="Seanforfun">
+	<link href="${pageContext.request.contextPath}/css/common.css" rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/css/login.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <script type="text/javascript">
@@ -108,14 +107,17 @@
 					<div class="title">
 						<strong>User login</strong>
 					</div>
-					<form id="loginForm"  method="post">
+					<div>
+						<s:actionerror/>
+					</div>
+					<form id="loginForm"  method="post" action="${pageContext.request.contextPath }/user_login">
 						<table>
 							<tbody><tr>
 								<th>
 										Username:
 								</th>
 								<td>
-									<input type="text" id="username" name="user_username" class="text" maxlength="20">
+									<input type="text" id="username" name="user_username" class="text" maxlength="20" value="<s:property value="#cookie.remember"/>">
 								</td>
 							</tr>
 							<tr>
@@ -123,7 +125,7 @@
 									Password:
 								</th>
 								<td>
-									<input type="password" id="password" name="user_password" class="text" maxlength="20" autocomplete="off">
+									<input type="password" id="password" name="user_password" class="text" maxlength="20">
 								</td>
 							</tr>
 								<tr>
@@ -132,7 +134,7 @@
 									</th>
 									<td>
 										<span class="fieldSet">
-											<input type="text" id="checkcode" name="captcha" class="text captcha" maxlength="4" autocomplete="off">
+											<input type="text" id="checkcode" name="checkcode" class="text captcha" maxlength="4">
 											<img id="checkcodeImage" class="captchaImage" src="${pageContext.request.contextPath}/user_checkcode" onclick="changeCheckcode('checkcodeImage')">
 											<span id="checkcodeSpan"></span>
 										</span>

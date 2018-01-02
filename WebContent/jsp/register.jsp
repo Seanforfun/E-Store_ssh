@@ -10,6 +10,7 @@
 <link href="${pageContext.request.contextPath}/css/register.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 <script type="text/javascript">
 	var flag = true;
 	var checkcode = true;
@@ -101,6 +102,10 @@
 		img.src = "${pageContext.request.contextPath}/user_checkcode?time=" + new Date().getTime().toString();
 	}
 	
+	function checkUsernameExist(){
+		var username = $("#username").val();
+		$("#usernameSpan").load("${pageContext.request.contextPath}/user_checkUsernameExist.action?time=" + new Date().getTime(), {'user_username':username});
+	}
 </script>
 <div class="container header">
 	<div class="span5">
@@ -156,30 +161,8 @@
 						|
 					</li>
 					<li>
-						<a href="./蔬菜分类.htm">Custom combos</a>
-						|
+						<a href="./蔬菜分类.htm">Custom combos</a>|
 					</li>
-					<li>
-						<a >item</a>
-						|
-					</li>
-					<li>
-						<a>item</a>
-						|
-					</li>
-					<li>
-						<a>item</a>
-						|
-					</li>
-					<li>
-						<a>item</a>
-						|
-					</li>
-					<li>
-						<a>item</a>
-						|
-					</li>
-					
 		</ul>
 	</div>
 	<div class="span24">
@@ -215,7 +198,7 @@
 									<span class="requiredField">*</span>Username:
 								</th>
 								<td>
-									<input type="text" id="username" name="user_username" class="text" maxlength="20" onclick="removeSpanContent('usernameSpan')">
+									<input type="text" id="username" name="user_username" class="text" maxlength="20" onclick="removeSpanContent('usernameSpan')" onblur="checkUsernameExist()">
 									<span id="usernameSpan"></span>
 								</td>
 							</tr>

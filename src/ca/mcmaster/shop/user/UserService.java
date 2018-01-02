@@ -1,5 +1,7 @@
 package ca.mcmaster.shop.user;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
@@ -54,5 +56,10 @@ public class UserService {
 	public User login(DetachedCriteria criteria) {
 		User ret = userDao.getUserByRestriction(criteria);
 		return ret;
+	}
+
+	public List<User> getUserByUsername(String username) {
+		List<User> list = userDao.getUserByUsername(username);
+		return list;
 	}
 }

@@ -20,7 +20,7 @@
         	<result name="activeFinish">/jsp/msg.jsp</result>
         	<result name="loginPageSuccess">/jsp/login.jsp</result>
         	<result name="loginInput">/jsp/login.jsp</result>
-        	<result name="loginSuccess">${pageContext.request.contextPath}/index</result>
+        	<result name="loginSuccess" type="redirectAction">/index.action</result>
         </action>
     </package>
 

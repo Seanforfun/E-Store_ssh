@@ -14,23 +14,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 
-import org.junit.Test;
-
 import ca.mcmaster.shop.user.User;
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Jan 1, 2018 10:18:30 PM
  */
 public class MailUtils {
-	
-	@Test
-	public void demo() throws AddressException, MessagingException{
-		User u = new User();
-		u.setUser_email("xbtdx@126.com");
-		u.setUser_activative_code("1111111");
-		MailUtils.sendActiveEmail(u);
-	}
-	
 	public static void sendMail(String email, String emailMsg)
 			throws AddressException, MessagingException {
 		Properties props = new Properties();
@@ -61,10 +50,10 @@ public class MailUtils {
 
 	public static void sendActiveEmail(User u) throws AddressException,
 			MessagingException {
-		String emailMsg = "Register success! Please <a href=http://localhost:8080/E-store/user_active?user_activative_code="
+		String emailMsg = "Register success! Please <a href=http://localhost:80/E-store/user_active?user_activative_code="
 				+ u.getUser_activative_code()
 				+ ">active</a> your account, active code is "
-				+ u.getUser_activative_code();
+				+ u.getUser_activative_code() ;
 		MailUtils.sendMail(u.getUser_email(), emailMsg);
 	}
 }
