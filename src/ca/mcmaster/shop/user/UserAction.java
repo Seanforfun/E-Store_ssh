@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 
 import net.sf.json.JSONObject;
@@ -26,6 +27,18 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private User user = new User();
 	private String time = new String();
 	private String checkcode = new String();
+	private String repassword;
+
+	public String getRepassword() {
+		return repassword;
+	}
+
+	public void setRepassword(String repassword) {
+		this.repassword = repassword;
+	}
+
+	@Resource(name = "userService")
+	private UserService userService;
 
 	public String getCheckcode() {
 		return checkcode;
@@ -60,20 +73,25 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 				.getResponse().getOutputStream());
 		return null;
 	}
-	
-	public String verify() throws IOException{
-		String correct = (String)ServletActionContext.getContext().getSession().get("verify");
+
+	public String verify() throws IOException {
+		String correct = (String) ServletActionContext.getContext()
+				.getSession().get("verify");
 		Map<String, String> map = new HashMap<String, String>();
-		System.out.println(correct);
-		System.out.println(checkcode);
-		if(checkcode.toLowerCase().equals(correct.toLowerCase())){
+		if (checkcode.toLowerCase().equals(correct.toLowerCase())) {
 			map.put("result", "true");
-		}else{
-			map.put("result", "Code doesn't match!");
+		} else {
+			map.put("result", "Checkcode doesn't match!");
 		}
 		JSONObject jsonObject = JSONObject.fromObject(map);
-		ServletActionContext.getResponse().getWriter().println(jsonObject.toString());
+		ServletActionContext.getResponse().getWriter()
+				.println(jsonObject.toString());
 		return NONE;
 	}
-	
+
+	public String register() {
+		userService.register(user);
+		this.addActionMessage("Register Success! Please active your account in your e-mail address.");
+		return "registerSuccess";
+	}
 }

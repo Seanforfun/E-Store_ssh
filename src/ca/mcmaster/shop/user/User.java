@@ -1,8 +1,8 @@
 package ca.mcmaster.shop.user;
 
 /**
- * @author Seanforfun
- * @version 2018年1月1日 上午12:18:17
+ * @author SeanForFun email:xiaob6@mcmaster.ca
+ * @version Jan 1, 2018 8:36:28 PM
  */
 public class User {
 	private Integer user_id;
