@@ -6,11 +6,14 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
 
+import ca.mcmaster.shop.ReturnType.ReturnResult;
 import ca.mcmaster.shop.utils.CheckCode;
 import ca.mcmaster.shop.utils.CheckCodeUtils;
 
@@ -89,9 +92,20 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		return NONE;
 	}
 
-	public String register() {
+	public String register() throws AddressException, MessagingException {
 		userService.register(user);
 		this.addActionMessage("Register Success! Please active your account in your e-mail address.");
 		return "registerSuccess";
+	}
+	
+	public String active(){
+		ReturnResult result = userService.active(user);
+		if(result == ReturnResult.SUCCESS){
+			this.addActionMessage("Avtivation Success!");
+		}else{
+			this.addActionMessage("Avtivation Failed!");
+		}
+		return "activeFinish";
+		
 	}
 }

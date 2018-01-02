@@ -1,5 +1,7 @@
 package ca.mcmaster.shop.user;
 
+import java.util.List;
+
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -10,5 +12,15 @@ public class UserDao extends HibernateDaoSupport {
 
 	public void save(User user) {
 		this.getHibernateTemplate().save(user);
+	}
+
+	public User getUserByActiveCode(String user_activative_code) {
+		@SuppressWarnings("unchecked")
+		List<User> list = this.getHibernateTemplate().find("from User where user_activative_code = ?", user_activative_code);
+		return list.get(0);
+	}
+
+	public void update(User user) {
+		this.getHibernateTemplate().update(user);
 	}
 }

@@ -17,6 +17,7 @@
         	<result name="registerPageSuccess" type="redirect">/jsp/register.jsp</result>
         	<result name="registerSuccess">/jsp/msg.jsp</result>
         	<result name="input">/jsp/register.jsp</result>
+        	<result name="activeFinish">/jsp/msg.jsp</result>
         </action>
     </package>
 

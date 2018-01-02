@@ -121,7 +121,7 @@
 					<a href="./会员登录.htm">Login</a>|
 				</li>
 				<li id="headerRegister" class="headerRegister" style="display: list-item;">
-					<a href="./会员注册.htm">Register</a>|
+					<a href="${pageContext.request.contextPath }/user_registerPage">Register</a>|
 				</li>
 				<li id="headerUsername" class="headerUsername"></li>
 				<li id="headerLogout" class="headerLogout">

@@ -106,6 +106,16 @@ An E-store based on Struts2, Hibernate and Spring.
 		hibernate.cfg.xml
 		log4j.properties
 		struts.xml
-## STEP3: Create index page and login page.
-	Create columns for all the fields in user table.
-	Write Utils for checkcode creation and verification(By Ajax).	
+## STEP3:
+	1.Create index page and login page.
+	2.Create columns for all the fields in user table.
+	3.Write Utils for checkcode creation and verification(By Ajax).
+	4.Write UserService and UserDao:
+		UserDao:save data into MySQL database.
+		UserService:
+			1.Call UserDao to save user information.
+			2.Send activative e-mail to user.
+				1)Install eyoumailserversetup.exe(In /WebContent/softwares/eyoumailserversetup.exe) to send e-mail;
+				2)Set up the URL. 
+				3)Create Accounts.
+	
