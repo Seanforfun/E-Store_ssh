@@ -2,6 +2,7 @@ package ca.mcmaster.shop.user;
 
 import java.util.List;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 /**
@@ -22,5 +23,15 @@ public class UserDao extends HibernateDaoSupport {
 
 	public void update(User user) {
 		this.getHibernateTemplate().update(user);
+	}
+
+	/**
+	 * @param criteria
+	 * @return
+	 */
+	public User getUserByRestriction(DetachedCriteria criteria) {
+		@SuppressWarnings("unchecked")
+		List<User> list = this.getHibernateTemplate().findByCriteria(criteria);
+		return list.get(0);
 	}
 }

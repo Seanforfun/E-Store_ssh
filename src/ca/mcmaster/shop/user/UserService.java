@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcmaster.shop.ReturnType.ReturnResult;
@@ -44,5 +45,14 @@ public class UserService {
 		}else {
 			return ReturnResult.FAILED;
 		}
+	}
+
+	/**
+	 * @param criteria
+	 * @return
+	 */
+	public User login(DetachedCriteria criteria) {
+		User ret = userDao.getUserByRestriction(criteria);
+		return ret;
 	}
 }

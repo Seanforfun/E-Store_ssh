@@ -16,8 +16,11 @@
         <action name="user_*" class="userAction" method="{1}">
         	<result name="registerPageSuccess" type="redirect">/jsp/register.jsp</result>
         	<result name="registerSuccess">/jsp/msg.jsp</result>
-        	<result name="input">/jsp/register.jsp</result>
+        	<result name="registerInput">/jsp/register.jsp</result>
         	<result name="activeFinish">/jsp/msg.jsp</result>
+        	<result name="loginPageSuccess">/jsp/login.jsp</result>
+        	<result name="loginInput">/jsp/login.jsp</result>
+        	<result name="loginSuccess">${pageContext.request.contextPath}/index</result>
         </action>
     </package>
 

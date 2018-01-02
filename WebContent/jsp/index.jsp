@@ -27,7 +27,7 @@
 		<div class="topNav clearfix">
 			<ul>
 				<li id="headerLogin" class="headerLogin" style="display: list-item;">
-					<a href="./会员登录.htm">Login</a>|
+					<a href="${pageContext.request.contextPath }/user_loginPage">Login</a>|
 				</li>
 				<li id="headerRegister" class="headerRegister" style="display: list-item;">
 					<a href="${pageContext.request.contextPath }/user_registerPage">Register</a>|

@@ -8,10 +8,13 @@ import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
+import javax.servlet.http.Cookie;
 
 import net.sf.json.JSONObject;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import ca.mcmaster.shop.ReturnType.ReturnResult;
 import ca.mcmaster.shop.utils.CheckCode;
@@ -19,6 +22,7 @@ import ca.mcmaster.shop.utils.CheckCodeUtils;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
 
 /**
  * @author SeanForFun email:xiaob6@mcmaster.ca
@@ -30,6 +34,11 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 	private String time = new String();
 	private String checkcode = new String();
 	private String repassword;
+	private String isRememberUsername;
+	
+	public void setIsRememberUsername(String isRememberUsername) {
+		this.isRememberUsername = isRememberUsername;
+	}
 
 	public String getRepassword() {
 		return repassword;
@@ -69,16 +78,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 
 	public String checkcode() throws IOException {
 		CheckCode code = CheckCodeUtils.drawCheckcode();
-		ServletActionContext.getContext().getSession()
-				.put("verify", code.getCheckCode());
-		ImageIO.write(code.getBufferedImage(), "jpg", ServletActionContext
-				.getResponse().getOutputStream());
+		ServletActionContext.getContext().getSession().put("verify", code.getCheckCode());
+		ImageIO.write(code.getBufferedImage(), "jpg", ServletActionContext.getResponse().getOutputStream());
 		return null;
 	}
 
 	public String verify() throws IOException {
-		String correct = (String) ServletActionContext.getContext()
-				.getSession().get("verify");
+		String correct = (String) ServletActionContext.getContext().getSession().get("verify");
 		Map<String, String> map = new HashMap<String, String>();
 		if (checkcode.toLowerCase().equals(correct.toLowerCase())) {
 			map.put("result", "true");
@@ -86,25 +92,49 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 			map.put("result", "Checkcode doesn't match!");
 		}
 		JSONObject jsonObject = JSONObject.fromObject(map);
-		ServletActionContext.getResponse().getWriter()
-				.println(jsonObject.toString());
+		ServletActionContext.getResponse().getWriter().println(jsonObject.toString());
 		return NONE;
 	}
 
+	@InputConfig(resultName = "registerInput")
 	public String register() throws AddressException, MessagingException {
 		userService.register(user);
 		this.addActionMessage("Register Success! Please active your account in your e-mail address.");
 		return "registerSuccess";
 	}
-	
-	public String active(){
+
+	public String active() {
 		ReturnResult result = userService.active(user);
-		if(result == ReturnResult.SUCCESS){
+		if (result == ReturnResult.SUCCESS) {
 			this.addActionMessage("Avtivation Success!");
-		}else{
+		} else {
 			this.addActionMessage("Avtivation Failed!");
 		}
 		return "activeFinish";
-		
+
+	}
+
+	public String loginPage() {
+		return "loginPageSuccess";
+	}
+
+	@InputConfig(resultName = "loginInput")
+	public String login() {
+		if(isRememberUsername.equals("true")){
+			Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		}
+		DetachedCriteria criteria = DetachedCriteria.forClass(User.class);
+		criteria.add(Restrictions.eq("user_username", user.getUser_username()))
+				.add(Restrictions.eq("user_password", user.getUser_password()))
+				.add(Restrictions.eq("user_status", 1));
+		User ret = userService.login(criteria);
+		if(ret == null){
+			this.addActionError("User doesen't exits! Try again!");
+			return "loginInput";
+		}else{
+			Map<String, Object> session = ServletActionContext.getContext().getSession();
+			session.put("existUser", ret);
+			return "loginSuccess";
+		}
 	}
 }

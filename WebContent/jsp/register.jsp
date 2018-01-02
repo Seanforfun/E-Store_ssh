@@ -96,8 +96,8 @@
 	}
 	
 	/*Refresh verify code picture*/
-	function changeCheckcode(){
-		var img = document.getElementById("checkcodeImage");
+	function changeCheckcode(id){
+		var img = document.getElementById(id);
 		img.src = "${pageContext.request.contextPath}/user_checkcode?time=" + new Date().getTime().toString();
 	}
 	
@@ -112,13 +112,13 @@
 	</div>
 	<div class="span9">
 <div class="headerAd">
-					<img src="${pageContext.request.contextPath}/image/header.jpg" width="320" height="50" alt="正品保障" title="正品保障">
+					<img src="${pageContext.request.contextPath}/image/header.jpg" width="320" height="50" alt="good quality" title="good quality">
 </div>	</div>
 	<div class="span10 last">
 		<div class="topNav clearfix">
 			<ul>
 				<li id="headerLogin" class="headerLogin" style="display: list-item;">
-					<a href="./会员登录.htm">Login</a>|
+					<a href="${pageContext.request.contextPath }/user_loginPage">Login</a>|
 				</li>
 				<li id="headerRegister" class="headerRegister" style="display: list-item;">
 					<a href="${pageContext.request.contextPath }/user_registerPage">Register</a>|
@@ -284,7 +284,7 @@
 									<td>
 										<span class="fieldSet">
 											<input type="text" id="checkcodeId" name="checkcode" class="text captcha" maxlength="4" onblur="verifyCheckcode()" onclick="removeSpanContent('checkcodeSpan')">
-											<img id="checkcodeImage" class="captchaImage" src="${pageContext.request.contextPath}/user_checkcode" onclick="changeCheckcode()">
+											<img id="checkcodeImage" class="captchaImage" src="${pageContext.request.contextPath}/user_checkcode" onclick="changeCheckcode('checkcodeImage')">
 											<span id="checkcodeSpan"></span>
 										</span>
 									</td>
@@ -350,7 +350,7 @@
 								<dt>Already have an account?</dt>
 								<dd>
 									Login now to enjoy shopping!
-									<a href="./会员登录.htm">Login</a>
+									<a href="${pageContext.request.contextPath }/user_loginPage">Login</a>
 								</dd>
 							</dl>
 						</div>
