@@ -10,46 +10,92 @@
 </head>
 <body>
 <script type="text/javascript">
+	var flag = true;
+	var checkcode = true;
+	function createXMLHttpRequest() {
+		var xmlHttp = null;
+		try { // Firefox, Opera 8.0+, Safari
+			xmlHttp = new XMLHttpRequest();
+		} catch (e) {
+			try {// Internet Explorer
+				xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+			} catch (e) {
+				try {
+					xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+				} catch (e) {
+				}
+			}
+		}
+		return xmlHttp;
+	}
+	
+	function verifyCheckcode(){
+		var checkcodeVal = document.getElementById("checkcodeId").value;
+		var xmlHttp = createXMLHttpRequest();
+		xmlHttp.onreadystatechange = function(){
+			if(xmlHttp.readyState == 4 && xmlHttp.status == 200){
+				var resp = xmlHttp.responseText;
+				var jsondata = eval("("+resp+")");
+				if(jsondata.result != "true"){
+					checkcodeSpan.innerHTML = jsondata.result;
+					checkcode = false;
+				}else{
+					checkcodeSpan.innerHTML = "";
+					checkcode = true;
+				}
+			}
+		}
+		xmlHttp.open("GET", "${pageContext.request.contextPath}/user_verify?checkcode=" + checkcodeVal, true);
+		xmlHttp.send(null);
+	}
+	
 	function checkForm(){
 		var username = document.getElementById("username").value;
-		var flag = true;
+		flag = true;
 		if(username == ""|| username.length == 0){
 			var span1 = document.getElementById("usernameSpan");
-			span1.innerHTML = "Username required!"
+			span1.innerHTML = "Username required!";
 			flag = false;
 		}
 		var password = document.getElementById("password").value;
 		if(password == ""){
 			var span2 = document.getElementById("passwordSpan");
-			span2.innerHTML = "Password required!"
+			span2.innerHTML = "Password required!";
 			flag = false;
 		}
 		var repassword = document.getElementById("repassword").value;
 		if(repassword != password){
 			var span3 = document.getElementById("repasswordSpan");
-			span3.innerHTML = "password should be same!"
+			span3.innerHTML = "password should be same!";
 			flag = false;
 		}
 		var email = document.getElementById("email").value.trim();
 		if(email == "" || email.length == 0){
 			var span4 = document.getElementById("emailSpan");
-			span4.innerHTML = "E-mail required!"
+			span4.innerHTML = "E-mail required!";
 			flag = false;
 		}else{
 			var reg=/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 			if(!reg.test(email)){
 				var span4 = document.getElementById("emailSpan");
-				span4.innerHTML = "Please use a correct e-mail!"
+				span4.innerHTML = "Please use a correct e-mail!";
 				flag = false;
 			}
 		}
-		return flag;
+		return flag&checkcode;
 	}
 	
 	function removeSpanContent(id){
 		var span = document.getElementById(id);
 		span.innerHTML = "";
 	}
+	
+	/*Refresh verify code picture*/
+	function checkcode(){
+		var img = document.getElementById("checkcodeImage");
+		img.src = "${pageContext.request.contextPath}/user_checkcode?time=" + new Date().getTime().toString();
+	}
+	
 </script>
 <div class="container header">
 	<div class="span5">
@@ -235,11 +281,13 @@
 									</tr>
 								<tr>
 									<th>
-										<span class="requiredField">*</span>Verify code:
+										<span class="requiredField">*</span>Checkcode:
 									</th>
 									<td>
 										<span class="fieldSet">
-											<input type="text" id="captcha" name="captcha" class="text captcha" maxlength="4"><img id="captchaImage" class="captchaImage" src="${pageContext.request.contextPath}/image/captcha.jhtml" title="点击更换验证码">
+											<input type="text" id="checkcodeId" name="captcha" class="text captcha" maxlength="4" onblur="verifyCheckcode()">
+											<img id="checkcodeImage" class="captchaImage" src="${pageContext.request.contextPath}/user_checkcode" onclick="checkcode()">
+											<span id="checkcodeSpan"></span>
 										</span>
 									</td>
 								</tr>
@@ -299,7 +347,7 @@
 <div class="container footer">
 	<div class="span24">
 		<div class="footerAd">
-					<img src="${pageContext.request.contextPath}/image/footer.jpg" width="950" height="52" alt="我们的优势" title="我们的优势">
+					<img src="${pageContext.request.contextPath}/image/footer.jpg" width="950" height="52" alt="Our advantage" title="Our advantage">
 </div>	</div>
 	<div class="span24">
 		<ul class="bottomNav">

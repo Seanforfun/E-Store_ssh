@@ -107,3 +107,5 @@ An E-store based on Struts2, Hibernate and Spring.
 		log4j.properties
 		struts.xml
 ## STEP3: Create index page and login page.
+	Create columns for all the fields in user table.
+	Write Utils for checkcode creation and verification(By Ajax).	
