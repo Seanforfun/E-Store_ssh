@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="ca.mcmaster.shop.level2.Level2" table="level2">
+		<id name="level2_id">
+			<generator class="native" />
+		</id>
+		<property name="level2_name" column="level2_name" length="50" />
+		<many-to-one name="level2_belonging" column="level1_no"
+			class="ca.mcmaster.shop.level1.Level1" cascade="save-update,delete"/>
+	</class>
+</hibernate-mapping>

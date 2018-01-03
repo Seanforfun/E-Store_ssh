@@ -10,7 +10,7 @@
 
     <package name="default" namespace="/" extends="struts-default">
         <action name="index" class="indexAction" method="execute">
-        	<result name="indexSuccess"  type="redirect">/jsp/index.jsp</result>
+        	<result name="indexSuccess">/jsp/index.jsp</result>
         </action>
         
         <action name="user_*" class="userAction" method="{1}">

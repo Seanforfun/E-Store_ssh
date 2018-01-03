@@ -32,8 +32,18 @@
 	
 	<!-- Define Service -->
 	<bean id="userService" class="ca.mcmaster.shop.user.UserService"/>
+	<bean id="level1Service" class="ca.mcmaster.shop.level1.Level1Service"/>
+	<bean id="productService" class="ca.mcmaster.shop.product.ProductService"/>
 	<!-- Define Dao -->
 	<bean id="userDao" class="ca.mcmaster.shop.user.UserDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="level1Dao" class="ca.mcmaster.shop.level1.Level1Dao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="productDao" class="ca.mcmaster.shop.product.ProductDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 </beans>

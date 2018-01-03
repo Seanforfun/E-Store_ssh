@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+        <hibernate-mapping>
+        	<class name="ca.mcmaster.shop.product.Product" table="product">
+        		<id name="product_id">
+        			<generator class="native"/>
+        		</id>
+        		<property name="product_name" length="50"/>
+        		<property name="product_market_price"/>
+        		<property name="product_store_price"/>
+        		<property name="product_photo"/>
+        		<property name="product_desc"/>
+        		<property name="product_ishot"/>
+        		<property name="product_date"/>
+        	</class>
+        </hibernate-mapping>
