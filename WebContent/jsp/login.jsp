@@ -109,6 +109,7 @@
 					</div>
 					<div>
 						<s:actionerror/>
+						<s:fielderror/>
 					</div>
 					<form id="loginForm"  method="post" action="${pageContext.request.contextPath }/user_login">
 						<table>

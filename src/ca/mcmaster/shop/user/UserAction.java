@@ -181,4 +181,13 @@ public class UserAction extends ActionSupport implements ModelDriven<User> {
 		}
 		return null;
 	}
+	
+	public String exit(){
+		Map<String, Object> session = ServletActionContext.getContext().getSession();
+		User existUser = (User) session.get("existUser");
+		if(null != existUser){
+			session.remove("existUser");
+		}
+		return "exitSuccess";
+	}
 }

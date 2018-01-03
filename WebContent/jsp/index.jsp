@@ -31,6 +31,9 @@
 					<li id="headerLogin" class="headerLogin" style="display: list-item;">
 						Welcome:<s:property value="#session.existUser.user_username"/>|
 					</li>
+					<li>
+							<a href="${pageContext.request.contextPath }/user_exit">[Exit]</a>|
+					</li>
 				</s:if>
 				<s:else>
 					<li id="headerLogin" class="headerLogin" style="display: list-item;">
@@ -40,9 +43,6 @@
 						<a href="${pageContext.request.contextPath }/user_registerPage">Register</a>|
 					</li>
 				</s:else>
-						<li>
-							<a>[Exit]</a>|
-						</li>
 						<li>
 							<a>Membership</a>|
 						</li>
