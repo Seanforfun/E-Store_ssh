@@ -41,7 +41,7 @@ public class ProductDao extends HibernateDaoSupport {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Product> findProductByPage(Integer level1_id, Integer begin,
+	public List<Product> findLevel1ProductByPage(Integer level1_id, Integer begin,
 			int limit) {
 		List<Product> pageProduct = this.getHibernateTemplate().executeFind(
 				new PageHibernateCallback<Product>("select p from Product p, Level2 level where p.product_belonging = level and level.level2_belonging.level1_id = ?",

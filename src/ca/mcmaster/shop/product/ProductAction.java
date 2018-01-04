@@ -24,6 +24,7 @@ public class ProductAction extends ActionSupport implements
 	private ProductService productService;
 	private Integer pageNum;
 	private Integer level1_id;
+	private Integer level2_id;
 
 	public Product getProduct() {
 		return product;
@@ -49,6 +50,14 @@ public class ProductAction extends ActionSupport implements
 		this.level1_id = level1_id;
 	}
 
+	public Integer getLevel2_id() {
+		return level2_id;
+	}
+
+	public void setLevel2_id(Integer level2_id) {
+		this.level2_id = level2_id;
+	}
+
 	private Product product = new Product();
 
 	@Override
@@ -62,19 +71,27 @@ public class ProductAction extends ActionSupport implements
 		ActionContext.getContext().put("level1List", level1List);
 		// Find all products under level1
 		PageInfoBean<Product> pageBean = productService.findProductsByPage(
-				pageNum, level1_id);
+				pageNum, level1_id, 1);
 		ActionContext.getContext().put("pageBean", pageBean);
 		return "findProductBylevel1_idSuccess";
 	}
-	
-	public String findProductById(){
+
+	public String findProductById() {
 		List<Level1> level1List = productService.findAllLevel1();
 		ActionContext.getContext().put("level1List", level1List);
 		product = productService.findProductById(product.getProduct_id());
-		if(null != product){
+		if (null != product) {
 			return "findProductByIdSuccess";
-		}else {
+		} else {
 			return "findProductByIdFail";
 		}
+	}
+	
+	public String findProductBylevel2_id(){
+		List<Level1> level1List = productService.findAllLevel1();
+		ActionContext.getContext().put("level1List", level1List);
+		PageInfoBean<Product> pageBean = productService.findProductsByPage(
+				pageNum, level2_id, 2);
+		return null;
 	}
 }

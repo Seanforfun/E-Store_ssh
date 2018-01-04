@@ -23,11 +23,11 @@
 				<s:iterator value="level1List" var="level1">
 					<dl>
 						<dt>
-							<a><s:property value="#level1.level1_name" /></a>
+							<a href="${pageContext.request.contextPath }/product_findProductBylevel1_id?level1_id=<s:property value="#level1.level1_id"/>&pageNum=1"><s:property value="#level1.level1_name" /></a>
 						</dt>
 						<s:iterator value="#level1.level2_set" var="level2s">
 							<dd>
-								<a><s:property value="#level2s.level2_name" /></a>
+								<a href="${pageContext.request.contextPath }/product_findProductBylevel2_id?level2_id=<s:property value="#level2s.level2_id"/>&pageNum=1"><s:property value="#level2s.level2_name" /></a>
 							</dd>
 						</s:iterator>
 					</dl>

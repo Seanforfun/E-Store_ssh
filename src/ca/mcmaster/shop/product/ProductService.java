@@ -38,12 +38,18 @@ public class ProductService {
 	}
 
 	public PageInfoBean<Product> findProductsByPage(Integer pageNum,
-			Integer level1_id) {
+			Integer id, int level) {
 		PageInfoBean<Product> pageBean = new PageInfoBean<Product>();
 		int limit = 12;
+		Integer productTotalNum = 0;
+		List<Product> productList = null;
 		pageBean.setCurrentPage(pageNum);
 		pageBean.setPageLimit(limit);
-		Integer productTotalNum = productDao.findNumByLevel1_id(level1_id);
+		if (level == 1) {
+			productTotalNum = productDao.findNumByLevel1_id(id);
+		}else{
+			productTotalNum = productDao.findNumByLevel2_id(id);
+		}
 		pageBean.setTotalInfo(productTotalNum);
 		if (null != productTotalNum) {
 			Integer totalPage = 0;
@@ -59,7 +65,13 @@ public class ProductService {
 			pageBean.setTotalPageNum(totalPage);
 		}
 		Integer begin = (pageNum - 1) * limit;
-		List<Product> productList = productDao.findProductByPage(level1_id, begin, limit);
+		if (level == 1) {
+			productList = productDao.findLevel1ProductByPage(id,
+					begin, limit);
+		}else{
+			productList = productDao.findLevel2ProductByPage(id,
+					begin, limit);
+		}
 		pageBean.setList(productList);
 		return pageBean;
 	}
