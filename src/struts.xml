@@ -26,8 +26,10 @@
         
         <action name="product_*" class="productAction" method="{1}">
         	<result name="findProductBylevel1_idSuccess">/jsp/list.jsp</result>
+        	<result name="findProductBylevel2_idSuccess">/jsp/list.jsp</result>
         	<result name="findProductByIdSuccess">/jsp/product.jsp</result>
         	<result name="findProductByIdFail" type="redirectAction">/index.action</result>
+        	<result name="findProductByLevelSuccess">/jsp/list.jsp</result>
         </action>
     </package>
 

@@ -4,13 +4,12 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.apache.struts2.ServletActionContext;
-
 import ca.mcmaster.shop.level1.Level1;
 import ca.mcmaster.shop.level1.Level1Service;
 import ca.mcmaster.shop.product.Product;
 import ca.mcmaster.shop.product.ProductService;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -41,11 +40,11 @@ public class IndexAction extends ActionSupport {
 	public void setNewList(List<Product> newList) {
 		this.newList = newList;
 	}
-	
+
 	public String execute() {
 		List<Level1> level1List = level1Service.findAll();
 		if (null != level1List) {
-			ServletActionContext.getContext().getSession()
+			ActionContext.getContext().getSession()
 					.put("level1List", level1List);
 		}
 		hotList = productService.findByHot();
