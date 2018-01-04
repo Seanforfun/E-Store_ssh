@@ -3,13 +3,13 @@
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <head>
-<title>List</title>
-<link href="${pageContext.request.contextPath}/css/common.css"
-	rel="stylesheet" type="text/css">
-<link href="${pageContext.request.contextPath}/css/product.css"
-	rel="stylesheet" type="text/css">
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
+	<title>List</title>
+	<link href="${pageContext.request.contextPath}/css/common.css"
+		rel="stylesheet" type="text/css">
+	<link href="${pageContext.request.contextPath}/css/product.css"
+		rel="stylesheet" type="text/css">
+	<script type="text/javascript"
+		src="${pageContext.request.contextPath}/js/jquery-1.8.3.js"></script>
 </head>
 <body>
 	<div class="container header">
@@ -35,16 +35,6 @@
 			</div>
 		</div>
 		<div class="span18 last">
-
-			<form id="productForm"
-				action="${pageContext.request.contextPath}/image/蔬菜 - Powered By Mango Team.htm"
-				method="get">
-				<input type="hidden" id="brandId" name="brandId" value=""> <input
-					type="hidden" id="promotionId" name="promotionId" value="">
-				<input type="hidden" id="orderType" name="orderType" value="">
-				<input type="hidden" id="pageNumber" name="pageNumber" value="1">
-				<input type="hidden" id="pageSize" name="pageSize" value="20">
-
 				<div id="result" class="result table clearfix">
 					<ul>
 						<s:iterator value="#pageBean.list" var="p">
@@ -62,13 +52,23 @@
 					</ul>
 				</div>
 				<div class="pagination">
-					<span class="firstPage">&nbsp;</span> <span class="previousPage">&nbsp;</span>
-					<span class="currentPage">1</span> <a
-						href="javascript: $.pageSkip(2);">2</a> <a class="nextPage"
-						href="javascript: $.pageSkip(2);">&nbsp;</a> <a class="lastPage"
-						href="javascript: $.pageSkip(2);">&nbsp;</a>
+					<s:if test="#pageBean.currentPage != 1">
+						<span class="firstPage"><a href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=1&level1_id=<s:property value='level1_id'/>"></a></span>
+						<span class="previousPage"><a href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#pageBean.currentPage-1'/>&level1_id=<s:property value='level1_id'/>"></a>&nbsp;</span>
+					</s:if>
+					<s:iterator var="i" begin="1" step="1" end="#pageBean.totalPageNum">
+						<s:if test="#pageBean.currentPage == #i">
+							<span class="currentPage"><s:property value="#i"/></span>
+						</s:if>
+						<s:else>
+							 <a href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#i'/>&level1_id=<s:property value='level1_id'/>"><s:property value="#i"/></a>
+						</s:else>
+					</s:iterator>
+					<s:if test="#pageBean.currentPage != #pageBean.totalPageNum">
+						 <a class="nextPage" href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#pageBean.currentPage+1'/>&level1_id=<s:property value='level1_id'/>">&nbsp;</a>
+						 <a class="lastPage" href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#pageBean.totalPageNum'/>&level1_id=<s:property value='level1_id'/>">&nbsp;</a>
+					</s:if>
 				</div>
-			</form>
 		</div>
 	</div>
 	<%@ include file="/jsp/tail.jsp"%>
