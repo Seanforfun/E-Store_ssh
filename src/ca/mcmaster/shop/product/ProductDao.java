@@ -53,4 +53,30 @@ public class ProductDao extends HibernateDaoSupport {
 		Product product = this.getHibernateTemplate().get(Product.class, product_id);
 		return product;
 	}
+
+	/**
+	 * @param id
+	 * @return
+	 */
+	public Integer findNumByLevel2_id(Integer id) {
+		@SuppressWarnings("unchecked")
+		List<Integer> list = this.getHibernateTemplate().find(
+				"select count(*) from Product p, Level2 lvl where p.product_belonging = lvl and lvl.level2_id = ?", id);
+		return list.get(0).intValue();
+	}
+
+	/**
+	 * @param id
+	 * @param begin
+	 * @param limit
+	 * @return
+	 */
+	public List<Product> findLevel2ProductByPage(Integer id, Integer begin, int limit) {
+		@SuppressWarnings("unchecked")
+		List<Product> list = this.getHibernateTemplate()
+				.executeFind(new PageHibernateCallback<>(
+						"select p from Product p, Level2 lvl where p.product_belonging = lvl and lvl.level2_id = ?",
+						new Object[] { id }, begin, limit));
+		return list;
+	}
 }

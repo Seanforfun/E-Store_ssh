@@ -52,24 +52,44 @@
 					</ul>
 				</div>
 				<div class="pagination">
-					<s:if test="#pageBean.currentPage != 1">
-						<span class="firstPage"><a href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=1&level1_id=<s:property value='level1_id'/>"></a></span>
-						<span class="previousPage"><a href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#pageBean.currentPage-1'/>&level1_id=<s:property value='level1_id'/>"></a>&nbsp;</span>
-					</s:if>
-					<s:iterator var="i" begin="1" step="1" end="#pageBean.totalPageNum">
-						<s:if test="#pageBean.currentPage == #i">
-							<span class="currentPage"><s:property value="#i"/></span>
+					<s:if test="level == 1">
+						<s:if test="#pageBean.currentPage != 1">
+							<span class="firstPage"><a href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=1&level_id=<s:property value='level1_id'/>&level=1"></a></span>
+							<span class="previousPage"><a href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#pageBean.currentPage-1'/>&level_id=<s:property value='level1_id'/>&level=1"></a>&nbsp;</span>
 						</s:if>
-						<s:else>
-							 <a href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#i'/>&level1_id=<s:property value='level1_id'/>"><s:property value="#i"/></a>
-						</s:else>
-					</s:iterator>
-					<s:if test="#pageBean.currentPage != #pageBean.totalPageNum">
-						 <a class="nextPage" href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#pageBean.currentPage+1'/>&level1_id=<s:property value='level1_id'/>">&nbsp;</a>
-						 <a class="lastPage" href="${pageContext.request.contextPath }/product_findProductBylevel1_id?pageNum=<s:property value='#pageBean.totalPageNum'/>&level1_id=<s:property value='level1_id'/>">&nbsp;</a>
+						<s:iterator var="i" begin="1" step="1" end="#pageBean.totalPageNum">
+							<s:if test="#pageBean.currentPage == #i">
+								<span class="currentPage"><s:property value="#i"/></span>
+							</s:if>
+							<s:else>
+								 <a href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#i'/>&level_id=<s:property value='level1_id'/>&level=1"><s:property value="#i"/></a>
+							</s:else>
+						</s:iterator>
+						<s:if test="#pageBean.currentPage != #pageBean.totalPageNum">
+							 <a class="nextPage" href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#pageBean.currentPage+1'/>&level_id=<s:property value='level1_id'/>&level=1">&nbsp;</a>
+							 <a class="lastPage" href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#pageBean.totalPageNum'/>&level_id=<s:property value='level1_id'/>&level=1">&nbsp;</a>
+						</s:if>
 					</s:if>
+					<s:elseif test="level == 2">
+						<s:if test="#pageBean.currentPage != 1">
+							<span class="firstPage"><a href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=1&level_id=<s:property value='level2_id'/>&level=2"></a></span>
+							<span class="previousPage"><a href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#pageBean.currentPage-1'/>&level_id=<s:property value='level2_id'/>&level=2"></a>&nbsp;</span>
+						</s:if>
+						<s:iterator var="i" begin="1" step="1" end="#pageBean.totalPageNum">
+							<s:if test="#pageBean.currentPage == #i">
+								<span class="currentPage"><s:property value="#i"/></span>
+							</s:if>
+							<s:else>
+								 <a href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#i'/>&level_id=<s:property value='level2_id'/>&level=2"><s:property value="#i"/></a>
+							</s:else>
+						</s:iterator>
+						<s:if test="#pageBean.currentPage != #pageBean.totalPageNum">
+							 <a class="nextPage" href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#pageBean.currentPage+1'/>&level_id=<s:property value='level2_id'/>&level=2">&nbsp;</a>
+							 <a class="lastPage" href="${pageContext.request.contextPath }/product_findProductByLevel?pageNum=<s:property value='#pageBean.totalPageNum'/>&level_id=<s:property value='level2_id'/>&level=2">&nbsp;</a>
+						</s:if>
+					</s:elseif>
 				</div>
-		</div>
+		</div>		
 	</div>
 	<%@ include file="/jsp/tail.jsp"%>
 </body>

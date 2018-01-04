@@ -25,6 +25,7 @@ public class ProductAction extends ActionSupport implements
 	private Integer pageNum;
 	private Integer level1_id;
 	private Integer level2_id;
+	private Integer level;
 
 	public Product getProduct() {
 		return product;
@@ -58,6 +59,14 @@ public class ProductAction extends ActionSupport implements
 		this.level2_id = level2_id;
 	}
 
+	public Integer getLevel() {
+		return level;
+	}
+
+	public void setLevel(Integer level) {
+		this.level = level;
+	}
+
 	private Product product = new Product();
 
 	@Override
@@ -66,6 +75,7 @@ public class ProductAction extends ActionSupport implements
 	}
 
 	public String findProductBylevel1_id() {
+		level = 1;
 		// Find all of level1
 		List<Level1> level1List = productService.findAllLevel1();
 		ActionContext.getContext().put("level1List", level1List);
@@ -86,12 +96,25 @@ public class ProductAction extends ActionSupport implements
 			return "findProductByIdFail";
 		}
 	}
-	
-	public String findProductBylevel2_id(){
+
+	public String findProductBylevel2_id() {
+		level = 2;
 		List<Level1> level1List = productService.findAllLevel1();
 		ActionContext.getContext().put("level1List", level1List);
-		PageInfoBean<Product> pageBean = productService.findProductsByPage(
-				pageNum, level2_id, 2);
-		return null;
+		PageInfoBean<Product> pageBean = productService.findProductsByPage(pageNum, level2_id, 2);
+		ActionContext.getContext().put("pageBean", pageBean);
+		return "findProductBylevel2_idSuccess";
+	}
+
+	public String findProductByLevel() {
+		String retVal = null;
+		List<Level1> level1List = productService.findAllLevel1();
+		ActionContext.getContext().put("level1List", level1List);
+		if(level == 1){
+			retVal = this.findProductBylevel1_id();
+		}else if(level == 2){
+			retVal = this.findProductBylevel2_id();
+		}
+		return retVal;
 	}
 }
