@@ -16,24 +16,10 @@
 <body>
 
 	<div class="container header">
-		<div class="span5">
-			<div class="logo">
-				<a href="${pageContext.request.contextPath }/index.action"> <img
-					src="${pageContext.request.contextPath}/image/logo.png"
-					alt="Seanforfunlogo" style="width: 250px; height: 50px;" />
-				</a>
-			</div>
-		</div>
-		<div class="span9">
-			<div class="headerAd">
-				<img src="${pageContext.request.contextPath}/image/header.jpg"
-					width="320" height="50" alt="good quality" title="good quality" />
-			</div>
-		</div>
 		<%@ include file="/jsp/header.jsp"%>
 		<%@ include file="/jsp/level1.jsp"%>
+		<%@ include file="/jsp/level2.jsp"%>
 	</div>
-
 	<div class="container index">
 		<div class="span24">
 			<div id="hotProduct" class="hotProduct clearfix">
@@ -77,34 +63,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="span24">
-			<div class="friendLink">
-				<dl>
-					<dt>User guide</dt>
-					<dd>
-						<a target="_blank">Pay method</a> |
-					</dd>
-					<dd>
-						<a target="_blank">Delivery</a> |
-					</dd>
-					<dd>
-						<a target="_blank">Aftersale service</a> |
-					</dd>
-					<dd>
-						<a target="_blank">Shopping guide</a> |
-					</dd>
-					<dd>
-						<a target="_blank">Vegatable </a> |
-					</dd>
-					<dd>
-						<a target="_blank">Gift card</a> |
-					</dd>
-					<dd class="more">
-						<a>More</a>
-					</dd>
-				</dl>
-			</div>
-		</div>
+		<%@ include file="/jsp/bottom.jsp" %>
 	</div>
 	<%@ include file="/jsp/tail.jsp"%>
 </body>

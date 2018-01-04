@@ -15,7 +15,7 @@ public class Product {
 	private Double product_store_price;
 	private String product_desc;
 	private String product_photo;
-//	private Level2 product_belonging;
+	private Level2 product_belonging;
 	private Integer product_ishot;
 	private Date product_date;
 	public Integer getProduct_id() {
@@ -80,5 +80,11 @@ public class Product {
 				+ product_store_price + ", product_desc=" + product_desc
 				+ ", product_photo=" + product_photo + ", product_ishot="
 				+ product_ishot + ", product_date=" + product_date + "]";
+	}
+	public Level2 getProduct_belonging() {
+		return product_belonging;
+	}
+	public void setProduct_belonging(Level2 product_belonging) {
+		this.product_belonging = product_belonging;
 	}
 }

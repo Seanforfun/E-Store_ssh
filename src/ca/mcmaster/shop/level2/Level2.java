@@ -1,6 +1,10 @@
 package ca.mcmaster.shop.level2;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import ca.mcmaster.shop.level1.Level1;
+import ca.mcmaster.shop.product.Product;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
@@ -10,6 +14,7 @@ public class Level2 {
 	private Integer level2_id;
 	private String level2_name;
 	private Level1 level2_belonging;
+	private Set<Product> products = new HashSet<Product>();
 	public Integer getLevel2_id() {
 		return level2_id;
 	}
@@ -27,5 +32,11 @@ public class Level2 {
 	}
 	public void setLevel2_belonging(Level1 level2_belonging) {
 		this.level2_belonging = level2_belonging;
+	}
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
 	}
 }

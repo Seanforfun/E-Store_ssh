@@ -27,6 +27,7 @@ public class PageHibernateCallback<T> implements HibernateCallback<List<T>>{
 
 
 
+	@SuppressWarnings("unchecked")
 	public List<T> doInHibernate(Session session) throws HibernateException,
 			SQLException {
 		Query query = session.createQuery(hql);

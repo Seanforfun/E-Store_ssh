@@ -10,9 +10,9 @@
         			<generator class="native"/>
         		</id>
         		<property name="level1_name" column="level1_name" length="50"/>
-        		<!-- <set name="level2_set" cascade="save-update,delete" inverse="true">
+        		<set name="level2_set" cascade="save-update,delete" inverse="true" order-by="level2_id">
         			<key column="level1_no"/>
         			<one-to-many class="ca.mcmaster.shop.level2.Level2"/>
-        		</set> -->
+        		</set>
         	</class>
         </hibernate-mapping>

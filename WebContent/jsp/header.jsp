@@ -1,6 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="/struts-tags"  prefix="s"%>    
+<%@ taglib uri="/struts-tags"  prefix="s"%>  
+<div class="span5">
+			<div class="logo">
+				<a href="${pageContext.request.contextPath }/index.action"> <img
+					src="${pageContext.request.contextPath}/image/logo.png"
+					alt="Seanforfunlogo" style="width: 250px; height: 50px;" />
+				</a>
+			</div>
+		</div>
+		<div class="span9">
+			<div class="headerAd">
+				<img src="${pageContext.request.contextPath}/image/header.jpg"
+					width="320" height="50" alt="good quality" title="good quality" />
+			</div>
+		</div>  
 <div class="span10 last">
 		<div class="topNav clearfix">
 			<ul>

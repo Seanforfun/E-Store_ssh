@@ -1,6 +1,5 @@
 package ca.mcmaster.shop.index;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -51,9 +50,6 @@ public class IndexAction extends ActionSupport {
 		}
 		hotList = productService.findByHot();
 		newList = productService.findByDate();
-		for(Product p : newList){
-			System.out.println(p);
-		}
 		return "indexSuccess";
 	}
 }

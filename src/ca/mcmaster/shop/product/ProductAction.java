@@ -1,19 +1,69 @@
 package ca.mcmaster.shop.product;
 
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import ca.mcmaster.shop.level1.Level1;
+import ca.mcmaster.shop.level2.Level2;
+import ca.mcmaster.shop.utils.PageInfoBean;
+
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.inject.util.Strings;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
  * @version Jan 2, 2018 9:32:59 PM
  */
+@SuppressWarnings("serial")
 public class ProductAction extends ActionSupport implements
 		ModelDriven<Product> {
+	@Resource(name = "productService")
+	private ProductService productService;
+	private Integer pageNum;
+	private Integer level1_id;
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Integer getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(Integer pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public Integer getLevel1_id() {
+		return level1_id;
+	}
+
+	public void setLevel1_id(Integer level1_id) {
+		this.level1_id = level1_id;
+	}
 
 	private Product product = new Product();
+
 	@Override
 	public Product getModel() {
 		return product;
 	}
 
+	public String findProductBylevel1_id() {
+		// Find all of level1
+		List<Level1> level1List = productService.findAllLevel1();
+		ActionContext.getContext().put("level1List", level1List);
+		// Find all products under level1
+		PageInfoBean<Product> pageBean = productService.findProductsByPage(
+				pageNum, level1_id);
+		ActionContext.getContext().put("pageBean", pageBean);
+		return "findProductBylevel1_idSuccess";
+	}
 }

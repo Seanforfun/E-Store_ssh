@@ -11,6 +11,10 @@
 		</id>
 		<property name="level2_name" column="level2_name" length="50" />
 		<many-to-one name="level2_belonging" column="level1_no"
-			class="ca.mcmaster.shop.level1.Level1" cascade="save-update,delete"/>
+			class="ca.mcmaster.shop.level1.Level1" cascade="save-update,delete" />
+		<set name="products" cascade="save-update,delete">
+			<key column="level2_no"/>
+			<one-to-many class="ca.mcmaster.shop.product.Product"/>
+		</set>
 	</class>
 </hibernate-mapping>

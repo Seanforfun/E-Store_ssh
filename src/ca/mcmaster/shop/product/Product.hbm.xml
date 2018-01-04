@@ -16,5 +16,6 @@
         		<property name="product_desc"/>
         		<property name="product_ishot"/>
         		<property name="product_date"/>
+        		<many-to-one name="product_belonging" class="ca.mcmaster.shop.level2.Level2" column="level2_no" cascade="save-update,delete"/>
         	</class>
         </hibernate-mapping>

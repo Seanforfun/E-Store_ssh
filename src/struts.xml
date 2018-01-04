@@ -23,6 +23,10 @@
         	<result name="loginSuccess" type="redirectAction">/index.action</result>
         	<result name="exitSuccess" type="redirectAction">/index.action</result>
         </action>
+        
+        <action name="product_*" class="productAction" method="{1}">
+        	<result name="findProductBylevel1_idSuccess">/jsp/list.jsp</result>
+        </action>
     </package>
 
 </struts>

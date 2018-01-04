@@ -23,20 +23,6 @@
 		}
 	</script>
 	<div class="container header">
-		<div class="span5">
-			<div class="logo">
-				<a href="http://localhost:8080/mango/"> <img
-					src="${pageContext.request.contextPath}/image/logo.png"
-					alt="Seanforfunlogo" style="width: 250px; height: 50px;" />
-				</a>
-			</div>
-		</div>
-		<div class="span9">
-			<div class="headerAd">
-				<img src="${pageContext.request.contextPath}/image/header.jpg"
-					width="320" height="50" alt="good quality" title="good quality">
-			</div>
-		</div>
 		<%@ include file="/jsp/header.jsp"%>
 		<%@ include file="/jsp/level1.jsp"%>
 		<%@ include file="/jsp/level2.jsp"%>

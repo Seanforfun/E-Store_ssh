@@ -29,6 +29,7 @@
 	<!-- Define Actions  -->
 	<bean id="indexAction" class="ca.mcmaster.shop.index.IndexAction" scope="prototype"/>
 	<bean id="userAction" class="ca.mcmaster.shop.user.UserAction" scope="prototype"/>
+	<bean id="productAction" class="ca.mcmaster.shop.product.ProductAction" scope="prototype"/>
 	
 	<!-- Define Service -->
 	<bean id="userService" class="ca.mcmaster.shop.user.UserService"/>

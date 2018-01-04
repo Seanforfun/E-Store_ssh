@@ -42,7 +42,7 @@
 			<mapping resource="ca/mcmaster/shop/user/User.hbm.xml"/>
 			<mapping resource="ca/mcmaster/shop/level1/Level1.hbm.xml"/>
 			<mapping resource="/ca/mcmaster/shop/product/Product.hbm.xml"/>
-			<!-- <mapping resource="ca/mcmaster/shop/level2/Level2.hbm.xml"/> -->
+			<mapping resource="ca/mcmaster/shop/level2/Level2.hbm.xml"/>
 		</session-factory>	
 	</hibernate-configuration>
 
