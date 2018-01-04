@@ -48,4 +48,9 @@ public class ProductDao extends HibernateDaoSupport {
 						new Object[] { level1_id }, begin, limit));
 		return pageProduct;
 	}
+
+	public Product findProductById(Integer product_id) {
+		Product product = this.getHibernateTemplate().get(Product.class, product_id);
+		return product;
+	}
 }

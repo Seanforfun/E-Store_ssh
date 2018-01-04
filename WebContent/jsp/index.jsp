@@ -34,7 +34,7 @@
 				<ul class="tabContent" style="display: block;">
 					<s:iterator value="hotList" var="hot">
 						<li>
-							<a>
+							<a href="${pageContext.request. contextPath}/product_findProductById?product_id=<s:property value='#hot.product_id'/>">
 								<img src="${pageContext.request.contextPath}/<s:property value='#hot.product_photo'/>"/>
 							</a>
 						</li>
@@ -47,16 +47,10 @@
 				<div class="title">
 					<strong>New Products</strong> <a target="_blank"></a>
 				</div>
-				<ul class="tab">
-					<li class="current"><a href="./蔬菜分类.htm?tagIds=2"
-						target="_blank"></a></li>
-					<li><a target="_blank"></a></li>
-					<li><a target="_blank"></a></li>
-				</ul>
 				<ul class="tabContent" style="display: block;">
 						<s:iterator value="newList" var="newproducts">
 							<li>
-								<a>
+								<a href="${pageContext.request. contextPath}/product_findProductById?product_id=<s:property value='#newproducts.product_id'/>">
 									<img src="${pageContext.request.contextPath}/<s:property value='#newproducts.product_photo'/>"/>
 									</a></li>
 						</s:iterator>

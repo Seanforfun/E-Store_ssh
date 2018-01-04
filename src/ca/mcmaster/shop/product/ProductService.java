@@ -63,4 +63,9 @@ public class ProductService {
 		pageBean.setList(productList);
 		return pageBean;
 	}
+
+	public Product findProductById(Integer product_id) {
+		Product product = productDao.findProductById(product_id);
+		return product;
+	}
 }

@@ -66,4 +66,15 @@ public class ProductAction extends ActionSupport implements
 		ActionContext.getContext().put("pageBean", pageBean);
 		return "findProductBylevel1_idSuccess";
 	}
+	
+	public String findProductById(){
+		List<Level1> level1List = productService.findAllLevel1();
+		ActionContext.getContext().put("level1List", level1List);
+		product = productService.findProductById(product.getProduct_id());
+		if(null != product){
+			return "findProductByIdSuccess";
+		}else {
+			return "findProductByIdFail";
+		}
+	}
 }

@@ -39,7 +39,7 @@
 					<ul>
 						<s:iterator value="#pageBean.list" var="p">
 							<li>
-								<a href="">
+								<a href="${pageContext.request. contextPath}/product_findProductById?product_id=<s:property value='#p.product_id'/>">
 								<img src="${pageContext.request.contextPath}/<s:property value='#p.product_photo'/>" width="170" height="170"  style="display: inline-block;">
 								<span style='color:green'>
 									 <s:property value="#p.product_name"/>
