@@ -2,15 +2,31 @@ package ca.mcmaster.shop.order;
 
 import javax.annotation.Resource;
 
+import org.springframework.transaction.annotation.Transactional;
+
 /**
- * @author Seanforfun
- * @version 2018年1月5日 上午1:20:12
+ * @author SeanForFun email:xiaob6@mcmaster.ca
+ * @version Jan 5, 2018 2:52:03 PM
  */
+@Transactional
 public class OrderService {
 	@Resource(name="orderDao")
 	private OrderDao orderDao;
 
 	public void saveOrder(Order order) {
 		orderDao.saveOrder(order);
+	}
+
+	public void removeOrderItembyId(Integer orderItem_id) {
+		orderDao.removeOrderItembyId(orderItem_id);
+	}
+
+	public Order findOrderByOrder_id(Integer order_id) {
+		Order order= orderDao.findOrderByOrder_id(order_id);
+		return order;
+	}
+
+	public void removeOrderByOrder_id(Integer order_id) {
+		orderDao.removeOrderByOrder_id(order_id);
 	}
 }

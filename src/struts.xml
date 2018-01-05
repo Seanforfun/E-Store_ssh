@@ -40,6 +40,8 @@
         
         <action name="order_*" class="orderAction" method="{1}">
         	<result name="SaveOrderSuccess">/jsp/order.jsp</result>
+        	<result name="removeOrderItemSuccess">/jsp/order.jsp</result>
+        	<result name="removeOrderItemEmptyOrder" type="redirectAction">/index.action</result>
         </action>
     </package>
 

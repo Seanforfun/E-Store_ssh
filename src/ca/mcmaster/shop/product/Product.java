@@ -1,8 +1,11 @@
 package ca.mcmaster.shop.product;
 
 import java.sql.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import ca.mcmaster.shop.level2.Level2;
+import ca.mcmaster.shop.order.OrderItem;
 
 /**
  * @author SeanForFun E-mail:xiaob6@mcmaster.ca
@@ -18,6 +21,7 @@ public class Product {
 	private Level2 product_belonging;
 	private Integer product_ishot;
 	private Date product_date;
+	private Set<OrderItem> orderItem_set = new HashSet<OrderItem>();
 	public Integer getProduct_id() {
 		return product_id;
 	}
@@ -86,5 +90,11 @@ public class Product {
 	}
 	public void setProduct_belonging(Level2 product_belonging) {
 		this.product_belonging = product_belonging;
+	}
+	public Set<OrderItem> getOrderItem_set() {
+		return orderItem_set;
+	}
+	public void setOrderItem_set(Set<OrderItem> orderItem_set) {
+		this.orderItem_set = orderItem_set;
 	}
 }

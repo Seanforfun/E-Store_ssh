@@ -9,8 +9,9 @@
         		<id name="orderItem_id">
         			<generator class="native"/>
         		</id>
-        		<property name="OrderItem_count"/>
-        		<property name="OrderItem_subtotal"/>
-        		<many-to-one name="OrderItem_belonging" column="order_no" cascade="save-update,delete" class="ca.mcmaster.shop.order.Order"/>
+        		<property name="orderItem_count"/>
+        		<property name="orderItem_subtotal"/>
+        		<many-to-one name="orderItem_belonging" column="order_no" cascade="save-update" class="ca.mcmaster.shop.order.Order"/>
+        		<many-to-one name="orderItem_product" column="product_no" class="ca.mcmaster.shop.product.Product"/>
         	</class>
         </hibernate-mapping>

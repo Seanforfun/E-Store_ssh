@@ -17,5 +17,9 @@
         		<property name="product_ishot"/>
         		<property name="product_date"/>
         		<many-to-one name="product_belonging" class="ca.mcmaster.shop.level2.Level2" column="level2_no" cascade="save-update,delete"/>
+        		<set name="orderItem_set">
+        			<key column="product_no"/>
+        			<one-to-many class="ca.mcmaster.shop.order.OrderItem"/>
+        		</set>
         	</class>
         </hibernate-mapping>

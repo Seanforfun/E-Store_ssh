@@ -3,22 +3,23 @@
 <!DOCTYPE hibernate-mapping PUBLIC
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-        
-        <hibernate-mapping>
-        	<class name="ca.mcmaster.shop.order.Order" table="order">
-        		<id name="order_id">
-        			<generator class="native"/>
-        		</id>
-        		<property name="order_time" />
-        		<property name="order_address" length="150"/>
-        		<property name="order_total_price"/>
-        		<property name="order_status"/>
-        		<property name="order_phone" length="20"/>
-        		<property name="order_receiver" length="50"/>
-        		<many-to-one name="order_belonging" class="ca.mcmaster.shop.user.User" column="user_no" cascade="save-update,delete"/>
-        		<set name="orderItem_set" cascade="save-update,delete">
-        			<key column="order_no"/>
-        			<one-to-many class="ca.mcmaster.shop.order.OrderItem"/>
-        		</set>
-        	</class>
-        </hibernate-mapping>
+
+<hibernate-mapping>
+	<class name="ca.mcmaster.shop.order.Order" table="order_tbl">
+		<id name="order_id">
+			<generator class="native" />
+		</id>
+		<property name="order_time" />
+		<property name="order_address" length="150" />
+		<property name="order_total_price" />
+		<property name="order_status" />
+		<property name="order_phone" length="20" />
+		<property name="order_receiver" length="50" />
+		<many-to-one name="order_order_belonging" class="ca.mcmaster.shop.user.User"
+			column="user_no" cascade="save-update" />
+		<set name="orderItem_set" cascade="save-update,delete">
+			<key column="order_no" />
+			<one-to-many class="ca.mcmaster.shop.order.OrderItem" />
+		</set>
+	</class>
+</hibernate-mapping>

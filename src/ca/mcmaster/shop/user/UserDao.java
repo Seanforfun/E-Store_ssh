@@ -25,17 +25,18 @@ public class UserDao extends HibernateDaoSupport {
 		this.getHibernateTemplate().update(user);
 	}
 
-	/**
-	 * @param criteria
-	 * @return
-	 */
 	public User getUserByRestriction(DetachedCriteria criteria) {
 		@SuppressWarnings("unchecked")
 		List<User> list = this.getHibernateTemplate().findByCriteria(criteria);
-		return list.get(0);
+		if(list.size() != 0){
+			return list.get(0);
+		}else{
+			return null;
+		}
 	}
 
 	public List<User> getUserByUsername(String username) {
+		@SuppressWarnings("unchecked")
 		List<User> list = this.getHibernateTemplate().find("from User where user_username = ?", username);
 		return list;
 	}

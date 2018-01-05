@@ -29,6 +29,7 @@ import com.opensymphony.xwork2.interceptor.annotations.InputConfig;
  * @author SeanForFun email:xiaob6@mcmaster.ca
  * @version Jan 1, 2018 5:09:20 PM
  */
+@SuppressWarnings("serial")
 public class UserAction extends ActionSupport implements ModelDriven<User> {
 
 	private User user = new User();

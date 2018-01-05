@@ -29,9 +29,11 @@
 		
 			<div class="step step1">
 				<ul>
-					
+					<s:actionerror/>
+					<s:if test="model.order_total_price != 0">
+						<h5>Create order success! Order id :<s:property value="model.order_id"/></h5>
+					</s:if>
 					<li  class="current"></li>
-					<li ><s:actionmessage/></li>
 				</ul>
 			</div>
 	
@@ -47,26 +49,25 @@
 						<th>Operation</th>
 					</tr>
 					<!-- better to use order but order is same as cart -->
-					<s:iterator value="#session.cart.map">
+					<s:iterator value="model.orderItem_set" var="items">
 						<tr>
 							<td width="60">
-								<input type="hidden" name="id" value="22">
-									<img src="${pageContext.request.contextPath}/<s:property value="value.product.product_photo"/>">
+								<img src="${pageContext.request.contextPath}/<s:property value="#items.orderItem_product.product_photo"/>">
 							</td>
 							<td>
-								<a target="_blank"><s:property value="value.product.product_name"/></a>
+								<a target="_blank"><s:property value="#items.orderItem_product.product_name"/></a>
 							</td>
-							<td>$<s:property value="value.product.product_store_price"/></td>
+							<td>$<s:property value="#items.orderItem_product.product_store_price"/></td>
 							<td class="quantity" width="60">
-								<input type="text" name="quantity" value="<s:property value='value.count'/>" maxlength="4">
+								<input type="text" name="quantity" value="<s:property value='#items.orderItem_count'/>" maxlength="4">
 									<div>
 										<span class="increase">&nbsp;</span> <span class="decrease">&nbsp;</span>
 									</div>
 							</td>
 							<td width="140">
-								<span class="subtotal">$<s:property value="value.subtotal"/></span>
+								<span class="subtotal">$<s:property value="#items.orderItem_subtotal"/></span>
 							</td>
-							<td><a href="${pageContext.request.contextPath}/cart_removeCartItem?product_id=<s:property value='value.product.product_id'/>" class="delete">Delete</a></td>
+							<td><a href="${pageContext.request.contextPath}/order_removeOrderItem?delete_orderItem_id=<s:property value='#items.orderItem_id'/>&order_id=<s:property value='model.order_id'/>" class="delete">Delete</a></td>
 						</tr>
 					</s:iterator>
 				</tbody>
@@ -75,7 +76,7 @@
 				</dl>
 				<div class="total">
 					<em id="promotion"></em>
-					Totao Price: <strong id="effectivePrice">$<s:property value="#session.cart.total"/></strong>
+					Totao Price: <strong id="effectivePrice">$<s:property value="model.order_total_price"/></strong>
 				</div>
 			<form id="orderForm" action="./order_payOrder.action" method="post">
 				<input type="hidden" name="model.order_id" value="<s:property value="model.order_id"/>"/>
