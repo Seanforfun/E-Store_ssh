@@ -106,8 +106,8 @@ An E-store based on Struts2, Hibernate and Spring.
 		hibernate.cfg.xml
 		log4j.properties
 		struts.xml
-## STEP3:
-	1.Create index page and login page.
+## STEP3: Main page and User operations:
+	1.Create index page, login page and register page(/jsp/index, /jsp/register.jsp, /jsp/register.jsp).
 	2.Create columns for all the fields in user table.
 	3.Write Utils for checkcode creation and verification(By Ajax).
 	4.Write UserService and UserDao:
@@ -118,4 +118,32 @@ An E-store based on Struts2, Hibernate and Spring.
 				1)Install eyoumailserversetup.exe(In /WebContent/softwares/eyoumailserversetup.exe) to send e-mail;
 				2)Set up the URL. 
 				3)Create Accounts.
+	5.Front-page and back-end user infomation validation.
+		Front-page:
+			Check required columns are not null and use regex to check e-mail format.
+			Use Ajax or jquery(same as Ajax) to check is username is valid(valid if it is not existing).
+		Back-end:
+			Use validator in Struts2(UserAction-user_login-validation.xml, UserAction-user_register-validation.xml).
+	6.Send E-mails to user to Active.
+		mail.properties:Used to save information of host e-mail. Information varies according to e-mail providers configuration.
+		/src/ca/mcmaster/shop/utils/MailUtils.java: Utils of sending e-mail.
+	7.Activative User after user active their account in their e-mail.
+	8.User login action to check if user is activated and if so, save user entity into session.
+## STEP4: Level1 menu, Hot/new products in Main page:
+	1. Create level1Service to find level1 menu from database and use this service in index.action, load the titles in main page.
+	2. Create productService to find hot and new products. Save them into valuestuck and load them on Main page.
+## STEP5: list.jsp to show level1 and level2 menus and products:
+	1. Create action leads from level1 menu in main page to list.jsp.
+	2. In this actions:
+		1. Find all level1 and level2 menus from database. (level2 menus belongs to level1 menus)
+		2. Find all products belongs to current level1 menu. 
+		3. Create page splite functions to show specific numbers of products in the page.(PageHibernateCallback.java) 
+	3. Create an action used to show all products belongs to level2 menu.
+## STEP6: Create product.jsp to show information of selected product from list.jsp:
+	1. Create action to get product information by product_id and load it on product.jsp.
+## STEP7: Add products to cart:
+	1. Get product_id and count from product.jsp and create a cartItem, add the cartItem into session.
+	2. Create an action from product.jsp to order.jsp:
+		1. Read session and load all product information to order.jsp.
+
 	
