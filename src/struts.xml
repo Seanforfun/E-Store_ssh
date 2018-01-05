@@ -37,6 +37,10 @@
         	<result name="removeCartItemSuccess">/jsp/cart.jsp</result>
         	<result name="clearCartSuccess" type="redirectAction">/index.action</result>
         </action>
+        
+        <action name="order_*" class="orderAction" method="{1}">
+        	<result name="SaveOrderSuccess">/jsp/order.jsp</result>
+        </action>
     </package>
 
 </struts>

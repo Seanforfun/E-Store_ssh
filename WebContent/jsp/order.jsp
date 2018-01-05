@@ -46,6 +46,7 @@
 						<th>Subtotal</th>
 						<th>Operation</th>
 					</tr>
+					<!-- better to use order but order is same as cart -->
 					<s:iterator value="#session.cart.map">
 						<tr>
 							<td width="60">
@@ -57,7 +58,7 @@
 							</td>
 							<td>$<s:property value="value.product.product_store_price"/></td>
 							<td class="quantity" width="60">
-								<input type="text" name="quantity" value="<s:property value='value.count'/>" maxlength="4" onpaste="return false;">
+								<input type="text" name="quantity" value="<s:property value='value.count'/>" maxlength="4">
 									<div>
 										<span class="increase">&nbsp;</span> <span class="decrease">&nbsp;</span>
 									</div>
@@ -77,14 +78,14 @@
 					Totao Price: <strong id="effectivePrice">$<s:property value="#session.cart.total"/></strong>
 				</div>
 			<form id="orderForm" action="./order_payOrder.action" method="post">
-				<input type="hidden" name="order.oid" value=""/>
+				<input type="hidden" name="model.order_id" value="<s:property value="model.order_id"/>"/>
 				<div class="span24">
 					<p>
-							Receive Address:<input name="order.user.addr" type="text" value="" style="width:350px" />
+							Receive Address:<input name="order_address" type="text" value="" style="width:350px" />
 								<br />
-							Receiver Name:&nbsp;&nbsp;&nbsp;：<input name="order.user.username" type="text" value="" style="width:150px" />
+							Receiver Name:&nbsp;&nbsp;&nbsp;：<input name="order_receiver" type="text" value="" style="width:150px" />
 								<br /> 
-							Contact Info:<input name="order.user.phone" type="text"value="" style="width:150px" />
+							Contact Info:<input name="order_phone" type="text"value="" style="width:150px" />
 
 						</p>
 						<hr />

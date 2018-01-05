@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+        
+        <hibernate-mapping>
+        	<class name="ca.mcmaster.shop.order.OrderItem" table="orderItem">
+        		<id name="orderItem_id">
+        			<generator class="native"/>
+        		</id>
+        		<property name="OrderItem_count"/>
+        		<property name="OrderItem_subtotal"/>
+        		<many-to-one name="OrderItem_belonging" column="order_no" cascade="save-update,delete" class="ca.mcmaster.shop.order.Order"/>
+        	</class>
+        </hibernate-mapping>

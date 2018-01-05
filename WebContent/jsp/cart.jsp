@@ -44,7 +44,7 @@ pageEncoding="UTF-8"%>
 							</td>
 							<td>$<s:property value="value.product.product_store_price"/></td>
 							<td class="quantity" width="60">
-								<input type="text" name="quantity" value="<s:property value='value.count'/>" maxlength="4" onpaste="return false;">
+								<input type="text" name="quantity" value="<s:property value='value.count'/>" maxlength="4">
 									<div>
 										<span class="increase">&nbsp;</span> <span class="decrease">&nbsp;</span>
 									</div>
@@ -71,7 +71,7 @@ pageEncoding="UTF-8"%>
 					<a href="${pageContext.request.contextPath}/user_loginPage" id="submit" class="submit">Login</a>
 				</s:if>
 				<s:else>
-					<a href="${pageContext.request.contextPath}/jsp/order.jsp" id="submit" class="submit">Submit Order</a>
+					<a href="${pageContext.request.contextPath}/order_saveOrder.action" id="submit" class="submit">Submit Order</a>
 				</s:else>
 			</div>
 		</div>

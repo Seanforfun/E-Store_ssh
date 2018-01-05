@@ -1,5 +1,10 @@
 package ca.mcmaster.shop.user;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import ca.mcmaster.shop.order.Order;
+
 /**
  * @author SeanForFun email:xiaob6@mcmaster.ca
  * @version Jan 1, 2018 8:36:28 PM
@@ -15,6 +20,7 @@ public class User {
 	private String user_address;
 	private Integer user_status;
 	private String user_activative_code;
+	private Set<Order> order_set = new HashSet<Order>();
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -74,5 +80,11 @@ public class User {
 	}
 	public void setUser_activative_code(String user_activative_code) {
 		this.user_activative_code = user_activative_code;
+	}
+	public Set<Order> getOrder_set() {
+		return order_set;
+	}
+	public void setOrder_set(Set<Order> order_set) {
+		this.order_set = order_set;
 	}
 }
