@@ -34,6 +34,8 @@
         
         <action name="cart_*" class="cartAction" method="{1}">
         	<result name="addProductToCartSuccess">/jsp/cart.jsp</result>
+        	<result name="removeCartItemSuccess">/jsp/cart.jsp</result>
+        	<result name="clearCartSuccess" type="redirectAction">/index.action</result>
         </action>
     </package>
 

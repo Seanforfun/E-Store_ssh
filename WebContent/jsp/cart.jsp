@@ -52,7 +52,7 @@ pageEncoding="UTF-8"%>
 							<td width="140">
 								<span class="subtotal">$<s:property value="value.subtotal"/></span>
 							</td>
-							<td><a href="javascript:;" class="delete">Delete</a></td>
+							<td><a href="${pageContext.request.contextPath}/cart_removeCartItem?product_id=<s:property value='value.product.product_id'/>" class="delete">Delete</a></td>
 						</tr>
 					</s:iterator>
 				</tbody>
@@ -66,8 +66,13 @@ pageEncoding="UTF-8"%>
 					id="effectivePoint"><s:property value="#session.cart.total/10"/></em> Total Price: <strong id="effectivePrice">$<s:property value="#session.cart.total"/></strong>
 			</div>
 			<div class="bottom">
-				<a href="javascript:;" id="clear" class="clear">Clear Cart</a> <a
-					href="./会员登录.htm" id="submit" class="submit">Submit orders</a>
+				<a href="${pageContext.request.contextPath}/cart_clearCart" id="clear" class="clear">Clear Cart</a>
+				<s:if test="#session.existUser == null">
+					<a href="${pageContext.request.contextPath}/user_loginPage" id="submit" class="submit">Login</a>
+				</s:if>
+				<s:else>
+					<a href="${pageContext.request.contextPath}/jsp/order.jsp" id="submit" class="submit">Submit Order</a>
+				</s:else>
 			</div>
 		</div>
 	</div>

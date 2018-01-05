@@ -53,4 +53,21 @@ public class CartAction extends ActionSupport implements ModelDriven<CartItem> {
 		}
 		return "addProductToCartSuccess";
 	}
+	
+	public String removeCartItem(){
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		Cart existCart = (Cart) session.get("cart");
+		if(existCart.getMap().containsKey(product_id)){
+			existCart.removeProductFromCart(product_id);
+		}
+		return "removeCartItemSuccess";
+	}
+	
+	public String clearCart(){
+		Map<String, Object> session = ActionContext.getContext().getSession();
+		if(session.containsKey("key")){
+			session.remove("cart");
+		}
+		return "clearCartSuccess";
+	}
 }

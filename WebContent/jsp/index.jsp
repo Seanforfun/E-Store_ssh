@@ -25,11 +25,11 @@
 			<div id="hotProduct" class="hotProduct clearfix">
 				<div class="title">
 					<strong>Hot Products</strong>
-					<!-- <a  target="_blank"></a> -->
 				</div>
 				<ul class="tab">
-					<li class="current"><a href="./蔬菜分类.htm?tagIds=1"
-						target="_blank"></a></li>
+					<li class="current">
+						<a href="" target="_blank"></a>
+					</li>
 				</ul>
 				<ul class="tabContent" style="display: block;">
 					<s:iterator value="hotList" var="hot">
@@ -45,8 +45,14 @@
 		<div class="span24">
 			<div id="newProduct" class="newProduct clearfix">
 				<div class="title">
-					<strong>New Products</strong> <a target="_blank"></a>
+					<strong>New Products</strong>
+					<a target="_blank"></a>
 				</div>
+				<ul class="tab">
+					<li class="current">
+						<a href="" target="_blank"></a>
+					</li>
+				</ul>
 				<ul class="tabContent" style="display: block;">
 						<s:iterator value="newList" var="newproducts">
 							<li>

@@ -46,7 +46,7 @@
 			</ul>
 		</div>
 		<div class="cart">
-			<a  href="./购物车.htm">Cart</a>
+			<a  href="${pageContext.request.contextPath }/jsp/cart.jsp">Cart</a>
 		</div>
 			<div class="phone">
 				Contact:
