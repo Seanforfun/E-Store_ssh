@@ -31,6 +31,10 @@
         	<result name="findProductByIdFail" type="redirectAction">/index.action</result>
         	<result name="findProductByLevelSuccess">/jsp/list.jsp</result>
         </action>
+        
+        <action name="cart_*" class="cartAction" method="{1}">
+        	<result name="addProductToCartSuccess">/jsp/cart.jsp</result>
+        </action>
     </package>
 
 </struts>
