@@ -29,4 +29,12 @@ public class OrderService {
 	public void removeOrderByOrder_id(Integer order_id) {
 		orderDao.removeOrderByOrder_id(order_id);
 	}
+
+	public void updateOrder(Order existOrder) {
+		orderDao.updateOrder(existOrder);
+	}
+
+	public void updateAfterPay(String p2_Order) {
+		orderDao.updateAfterPay(p2_Order);
+	}
 }

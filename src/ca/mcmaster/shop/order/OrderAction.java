@@ -1,19 +1,24 @@
 package ca.mcmaster.shop.order;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
+import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-import com.sun.org.apache.regexp.internal.REDebugCompiler;
 
 import ca.mcmaster.shop.cart.Cart;
 import ca.mcmaster.shop.cart.CartItem;
 import ca.mcmaster.shop.user.User;
+import ca.mcmaster.shop.utils.PaymentUtil;
 
 /**
  * @author SeanForFun email:xiaob6@mcmaster.ca
@@ -27,6 +32,24 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	private String pd_FrpId;
 	private Integer delete_orderItem_id;
 	private Order order = new Order();
+	private String p2_Order;
+	private String p3_Amt;
+	public String getP2_Order() {
+		return p2_Order;
+	}
+
+	public void setP2_Order(String p2_Order) {
+		this.p2_Order = p2_Order;
+	}
+
+	public String getP3_Amt() {
+		return p3_Amt;
+	}
+
+	public void setP3_Amt(String p3_Amt) {
+		this.p3_Amt = p3_Amt;
+	}
+
 	@Override
 	public Order getModel() {
 		return order;
@@ -86,5 +109,56 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 			return "removeOrderItemEmptyOrder";
 		}
 		return "removeOrderItemSuccess";
+	}
+	
+	public String payOrder() throws IOException{
+		Order existOrder = orderService.findOrderByOrder_id(order.getOrder_id());
+		existOrder.setOrder_address(order.getOrder_address());
+		existOrder.setOrder_phone(order.getOrder_phone());
+		existOrder.setOrder_receiver(order.getOrder_receiver());
+		if(null != existOrder){
+			orderService.updateOrder(existOrder);
+		}
+		//Set payment utils
+		String  p0_Cmd = "Buy";
+		String  p1_MerId = ResourceBundle.getBundle("payment").getString("p1_MerId");
+		String  p2_Order = order.getOrder_id().toString();
+		String  p3_Amt = existOrder.getOrder_total_price().toString();
+		String  p4_Cur = "CNY";
+		String  p5_Pid = "";
+		String  p6_Pcat = "";
+		String  p7_Pdesc = "";
+		String  p8_Url = "http://localhost:80/E-store/order_callback.action";
+		String  p9_SAF = "";
+		String  pa_MP = "";
+		String  pr_NeedResponse = "1";
+		String keyValue = ResourceBundle.getBundle("payment").getString("keyValue");
+		String[] requestArgs = new String[]{p0_Cmd, p1_MerId, p2_Order, p3_Amt, p4_Cur, p5_Pid, p6_Pcat, p7_Pdesc, p8_Url, p9_SAF, pa_MP, pr_NeedResponse};
+		String  hmac = PaymentUtil.getHmac(requestArgs, keyValue);
+		StringBuilder stringBuilder = new StringBuilder(ResourceBundle.getBundle("payment").getString("sendURL") + "?");
+		stringBuilder.append("p0_Cmd=" + p0_Cmd);
+		stringBuilder.append("&p1_MerId=" + p1_MerId);
+		stringBuilder.append("&p2_Order=" + p2_Order);
+		stringBuilder.append("&p3_Amt=" + p3_Amt);
+		stringBuilder.append("&p1_MerId=" + p1_MerId);
+		stringBuilder.append("&p4_Cur=" + p4_Cur);
+		stringBuilder.append("&p5_Pid=" + p5_Pid);
+		stringBuilder.append("&p6_Pcat=" + p6_Pcat);
+		stringBuilder.append("&p7_Pdesc=" + p7_Pdesc);
+		stringBuilder.append("&p8_Url=" + p8_Url);
+		stringBuilder.append("&p9_SAF=" + p9_SAF);
+		stringBuilder.append("&pa_MP=" + pa_MP);
+		stringBuilder.append("&pr_NeedResponse=" + pr_NeedResponse);
+		stringBuilder.append("&hmac=" + hmac);
+		HttpServletResponse response = ServletActionContext.getResponse();
+		System.out.println(stringBuilder.toString());
+		response.sendRedirect(stringBuilder.toString());
+		return null;
+	}
+	
+	public String callback(){
+		orderService.updateAfterPay(p2_Order);
+		this.addActionMessage("Order " + p2_Order + " is paid, price is " + p3_Amt);
+		return "msg";
 	}
 }

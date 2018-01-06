@@ -27,4 +27,12 @@ public class OrderDao extends HibernateDaoSupport {
 		this.getHibernateTemplate().delete(order);
 	}
 
+	public void updateOrder(Order existOrder) {
+		this.getHibernateTemplate().update(existOrder);
+	}
+
+	public void updateAfterPay(String p2_Order) {
+		Order order = this.getHibernateTemplate().get(Order.class, p2_Order);
+		order.setOrder_status(1);
+	}
 }
