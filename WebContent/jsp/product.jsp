@@ -40,7 +40,7 @@
 						</dt>
 						<s:iterator value="#level1.level2_set" var="level2s">
 							<dd>
-								<a><s:property value="#level2s.level2_name" /></a>
+								<a><s:property value="#level2s.level2_name"/></a>
 							</dd>
 						</s:iterator>
 					</dl>
@@ -122,7 +122,7 @@
 						<dd>
 							<input type="hidden" name="product_id" value="<s:property value="model.product_id"/>">
 							<input id="quantity" name="count" value="1" maxlength="4"
-								onpaste="return false;" type="text">
+								 type="text">
 							<div>
 								<span id="increase" class="increase">&nbsp;</span> <span
 									id="decrease" class="decrease">&nbsp;</span>
@@ -135,7 +135,7 @@
 					</div>
 				</div>
 			</form>
-			<div id="introduction" name="introduction" class="introduction">
+			<div id="introduction" class="introduction">
 				<div class="title">
 					<strong>Product Introduction</strong>
 				</div>

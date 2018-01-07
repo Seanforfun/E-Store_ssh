@@ -48,7 +48,6 @@
 						<th>Subtotal</th>
 						<th>Operation</th>
 					</tr>
-					<!-- better to use order but order is same as cart -->
 					<s:iterator value="model.orderItem_set" var="items">
 						<tr>
 							<td width="60">
@@ -76,7 +75,7 @@
 				</dl>
 				<div class="total">
 					<em id="promotion"></em>
-					Totao Price: <strong id="effectivePrice">$<s:property value="model.order_total_price"/></strong>
+					Total Price: <strong id="effectivePrice">$<s:property value="model.order_total_price"/></strong>
 				</div>
 			<form id="orderForm" action="./order_payOrder.action" method="post">
 				<input type="hidden" name="model.order_id" value="<s:property value="model.order_id"/>"/>

@@ -23,6 +23,9 @@
 						Welcome:<s:property value="#session.existUser.user_username"/>|
 					</li>
 					<li>
+						<a href="${pageContext.request.contextPath }/order_findOrderById?user_id=<s:property value='#session.existUser.user_id'/>">My Orders</a>|
+					</li>
+					<li>
 							<a href="${pageContext.request.contextPath }/user_exit">[Exit]</a>|
 					</li>
 				</s:if>

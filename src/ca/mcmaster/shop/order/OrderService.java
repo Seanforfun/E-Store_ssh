@@ -1,5 +1,7 @@
 package ca.mcmaster.shop.order;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -36,5 +38,10 @@ public class OrderService {
 
 	public void updateAfterPay(String p2_Order) {
 		orderDao.updateAfterPay(p2_Order);
+	}
+
+	public Set<Order> findOrderByUserId(Integer user_id) {
+		Set<Order> orders = orderDao.findOrderByUserId(user_id);
+		return orders;
 	}
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,16 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	private Order order = new Order();
 	private String p2_Order;
 	private String p3_Amt;
+	private Integer user_id;
+	
+	public Integer getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(Integer user_id) {
+		this.user_id = user_id;
+	}
+
 	public String getP2_Order() {
 		return p2_Order;
 	}
@@ -158,7 +169,14 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	
 	public String callback(){
 		orderService.updateAfterPay(p2_Order);
-		this.addActionMessage("Order " + p2_Order + " is paid, price is " + p3_Amt);
-		return "msg";
+		return "callbackSuccess";
+	}
+	
+	public String findOrderById(){
+		Set<Order> orders = orderService.findOrderByUserId(user_id);
+		if(orders != null){
+			ActionContext.getContext().put("currrentUserOrders", orders);
+		}
+		return "findOrderByIdSuccess";
 	}
 }

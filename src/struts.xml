@@ -42,6 +42,8 @@
         	<result name="SaveOrderSuccess">/jsp/order.jsp</result>
         	<result name="removeOrderItemSuccess">/jsp/order.jsp</result>
         	<result name="removeOrderItemEmptyOrder" type="redirectAction">/index.action</result>
+        	<result name="callbackSuccess" type="redirectAction">/index.action</result>
+        	<result name="findOrderByIdSuccess">/jsp/showOrders.jsp</result>
         </action>
     </package>
 
