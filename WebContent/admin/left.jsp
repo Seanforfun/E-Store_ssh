@@ -30,7 +30,8 @@
 		d.add("03",0,'Order manage','','','mainFrame');
 		d.add("04",0,'Level1 manage','','','mainFrame');
 		d.add("04-1","04",'Level1 manage','${pageContext.request.contextPath}/level1_adminFindAll','','mainFrame');
-		d.add("05",0,'Level2 menu manage','','','mainFrame');
+		d.add("05",0,'Level2 manage','','','mainFrame');
+		d.add("05-1","05",'Level2 manage','${pageContext.request.contextPath}/level2_adminFindAllByPage?page=1','','mainFrame');
 		
 		document.write(d);
 		//-->

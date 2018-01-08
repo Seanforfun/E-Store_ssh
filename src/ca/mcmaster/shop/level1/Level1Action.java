@@ -26,6 +26,13 @@ public class Level1Action extends ActionSupport implements ModelDriven<Level1> {
 	public String adminFindAll(){
 		List<Level1> level1s = level1Service.findAll();
 		ActionContext.getContext().put("level1list", level1s);
+		Integer size = level1s.size();
+		if(size == 7){
+			ActionContext.getContext().getSession().put("level1Size", null);
+		}else {
+			ActionContext.getContext().getSession().put("level1Size", size);
+		}
+		
 		return "adminFindAllSuccess";
 	}
 	

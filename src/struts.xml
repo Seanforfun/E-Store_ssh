@@ -58,6 +58,10 @@
         	<result name="editByIdPrePostSuccess" type="redirectAction">/level1_adminFindAll.action</result>
         	<result name="editByIdPreSuccess">/admin/level1/edit.jsp</result>
         </action>
+        
+        <action name="level2_*" class="level2Action" method="{1}">
+        	<result name="adminFindAllByPageSuccess">/admin/level2/list.jsp</result>
+        </action>
     </package>
 
 </struts>
