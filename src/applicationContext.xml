@@ -35,12 +35,14 @@
 	<bean id="productAction" class="ca.mcmaster.shop.product.ProductAction" scope="prototype"/>
 	<bean id="cartAction" class="ca.mcmaster.shop.cart.CartAction" scope="prototype"/>
 	<bean id="orderAction" class="ca.mcmaster.shop.order.OrderAction" scope="prototype"/>
+	<bean id="adminAction" class="ca.mcmaster.shop.admin.AdminAction" scope="prototype"/>
 	
 	<!-- Define Service -->
 	<bean id="userService" class="ca.mcmaster.shop.user.UserService"/>
 	<bean id="level1Service" class="ca.mcmaster.shop.level1.Level1Service"/>
 	<bean id="productService" class="ca.mcmaster.shop.product.ProductService"/>
 	<bean id="orderService" class="ca.mcmaster.shop.order.OrderService"/>
+	<bean id="adminService" class="ca.mcmaster.shop.admin.AdminService"/>
 	<!-- Define Dao -->
 	<bean id="userDao" class="ca.mcmaster.shop.user.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
@@ -55,6 +57,10 @@
 	</bean>
 	
 	<bean id="orderDao" class="ca.mcmaster.shop.order.OrderDao">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	<bean id="adminDao" class="ca.mcmaster.shop.admin.AdminDao">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
 </beans>

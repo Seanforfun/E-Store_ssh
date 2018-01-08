@@ -7,7 +7,7 @@
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
     <constant name="struts.devMode" value="true" />
-
+	<constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
         <action name="index" class="indexAction" method="execute">
         	<result name="indexSuccess">/jsp/index.jsp</result>
@@ -44,6 +44,11 @@
         	<result name="removeOrderItemEmptyOrder" type="redirectAction">/index.action</result>
         	<result name="callbackSuccess" type="redirectAction">/index.action</result>
         	<result name="findOrderByIdSuccess">/jsp/showOrders.jsp</result>
+        </action>
+        
+        <action name="admin_*" class="adminAction" method="{1}">
+        	<result name="loginSuccess">/admin/home.jsp</result>
+        	<result name="loginFailed">/admin/login.jsp</result>
         </action>
     </package>
 
