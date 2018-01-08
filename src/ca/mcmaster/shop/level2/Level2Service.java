@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -33,5 +34,9 @@ public class Level2Service {
 		List<Level2> level2s = level2Dao.findAllByPage(pageBean);
 		pageBean.setList(level2s);
 		return pageBean;
+	}
+
+	public void deleteByCriteria(DetachedCriteria criteria) {
+		level2Dao.deleteByCriteria(criteria);
 	}
 }

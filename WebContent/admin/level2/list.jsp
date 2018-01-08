@@ -51,18 +51,18 @@
 									<td style="CURSOR: hand; HEIGHT: 22px" align="center"
 									width="17%"><s:property value="#level2.level2_belonging.level1_name" /></td>
 								<td align="center" style="HEIGHT: 22px">
-									<s:a namespace="/" action="level1_editByIdPre">
-										<s:param name="level1_id" value="%{#level2.level2_id}" />
-										<s:param name="level1_name" value="%{#level2.level2_name}"/>
+									<s:a namespace="/" action="level2_editByIdPre">
+										<s:param name="level2_id" value="%{#level2.level2_id}" />
+										<s:param name="level2_name" value="%{#level2.level2_name}"/>
 										<img
 											src="${pageContext.request.contextPath}/images/i_edit.gif"
 											border="0" style="CURSOR: hand">
 									</s:a>
 								</td>
 								<td align="center" style="HEIGHT: 22px">
-									<s:a namespace="/" action="level1_deleteById?">
-										<s:param name="level1_id" value="%{#level2.level2_id}" />
-										<s:param name="level1_name" value="%{#level2.level2_name}"/>
+									<s:a namespace="/" action="level2_deleteById?">
+										<s:param name="level2_id" value="%{#level2.level2_id}" />
+										<s:param name="level2_name" value="%{#level2.level2_name}"/>
 										<img src="${pageContext.request.contextPath}/images/i_del.gif"
 											width="16" height="16" border="0" style="CURSOR: hand">
 									</s:a></td>

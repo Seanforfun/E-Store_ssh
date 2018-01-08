@@ -61,6 +61,7 @@
         
         <action name="level2_*" class="level2Action" method="{1}">
         	<result name="adminFindAllByPageSuccess">/admin/level2/list.jsp</result>
+        	<result name="deleteByIdSuccess" type="redirectAction">/level2_adminFindAllByPage.action?page=1</result>
         </action>
     </package>
 
