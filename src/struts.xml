@@ -6,7 +6,7 @@
 <struts>
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="true" />
+    <constant name="struts.devMode" value="false" />
 	<constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
         <action name="index" class="indexAction" method="execute">
@@ -47,8 +47,16 @@
         </action>
         
         <action name="admin_*" class="adminAction" method="{1}">
-        	<result name="loginSuccess">/admin/home.jsp</result>
+        	<result name="loginSuccess" type="redirect">/admin/home.jsp</result>
         	<result name="loginFailed">/admin/login.jsp</result>
+        </action>
+        
+        <action name="level1_*" class="level1Action" method="{1}">
+        	<result name="adminFindAllSuccess">/admin/level1/list.jsp</result>
+        	<result name="addLevel1Success" type="redirectAction">/level1_adminFindAll.action</result>
+        	<result name="deleteByIdSuccess" type="redirectAction">/level1_adminFindAll.action</result>
+        	<result name="editByIdPrePostSuccess" type="redirectAction">/level1_adminFindAll.action</result>
+        	<result name="editByIdPreSuccess">/admin/level1/edit.jsp</result>
         </action>
     </package>
 

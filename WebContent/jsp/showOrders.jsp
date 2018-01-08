@@ -29,6 +29,7 @@
 			<s:iterator value="currrentUserOrders" var="order">
 				<table>
 					<tbody>
+						<font color="red"><span>Order id: <s:property value='#order.order_id'/></span></font>
 					<tr>
 						<th>Photo</th>
 						<th>Product</th>

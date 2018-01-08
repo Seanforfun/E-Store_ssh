@@ -25,8 +25,12 @@
 		d.add(0,-1,'E-store admin menu');
 		d.add("01",0,'User Manage','${pageContext.request.contextPath}','','mainFrame');
 		d.add("01-1","01",'User Manage','${pageContext.request.contextPath}','','mainFrame');
-		d.add(3,"01",'User manage','${pageContext.request.contextPath}/User_list','','mainFrame');
-		
+		d.add("02",0,'Product manage','','','mainFrame');
+		d.add("02-1","02",'Product manage-1','','','mainFrame');
+		d.add("03",0,'Order manage','','','mainFrame');
+		d.add("04",0,'Level1 manage','','','mainFrame');
+		d.add("04-1","04",'Level1 manage','${pageContext.request.contextPath}/level1_adminFindAll','','mainFrame');
+		d.add("05",0,'Level2 menu manage','','','mainFrame');
 		
 		document.write(d);
 		//-->

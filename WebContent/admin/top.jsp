@@ -34,7 +34,7 @@ TH {
 					<img width="100%" src="${pageContext.request.contextPath}/images/top_01.jpg">
 				</td>
 
-				<td width="100%" background="${pageContext.request.contextPath}/images/top_100.jpg">
+				<td width="100%" background="${pageContext.request.contextPath}/images/top_100.jpg" style="height: 15px; ">
 				</td>
 			</tr>
 		</table>

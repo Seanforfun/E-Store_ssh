@@ -19,4 +19,16 @@ public class Level1Service {
 		List<Level1> level1list = level1Dao.findAll();
 		return level1list;
 	}
+
+	public void add(Level1 level1) {
+		level1Dao.add(level1);
+	}
+
+	public void deleteById(Integer level1_id) {
+		level1Dao.deleteById(level1_id);
+	}
+
+	public void update(Level1 level1) {
+		level1Dao.update(level1);
+	}
 }

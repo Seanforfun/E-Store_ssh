@@ -36,6 +36,7 @@
 	<bean id="cartAction" class="ca.mcmaster.shop.cart.CartAction" scope="prototype"/>
 	<bean id="orderAction" class="ca.mcmaster.shop.order.OrderAction" scope="prototype"/>
 	<bean id="adminAction" class="ca.mcmaster.shop.admin.AdminAction" scope="prototype"/>
+	<bean id="level1Action" class="ca.mcmaster.shop.level1.Level1Action" scope="prototype"/>
 	
 	<!-- Define Service -->
 	<bean id="userService" class="ca.mcmaster.shop.user.UserService"/>
