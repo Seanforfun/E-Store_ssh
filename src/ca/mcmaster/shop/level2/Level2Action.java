@@ -26,7 +26,7 @@ public class Level2Action extends ActionSupport implements ModelDriven<Level2> {
 	private Level2 level2 = new Level2();
 	private Integer page;
 	private String level2_belongname;
-	
+
 	public String getLevel2_belongname() {
 		return level2_belongname;
 	}
@@ -47,47 +47,81 @@ public class Level2Action extends ActionSupport implements ModelDriven<Level2> {
 	public Level2 getModel() {
 		return level2;
 	}
-	
-	public String adminFindAllByPage(){
+
+	public String adminFindAllByPage() {
 		PageInfoBean<Level2> pageBean = level2Service.findAllByPage(page);
-		if(null != pageBean){
+		if (null != pageBean) {
 			ActionContext.getContext().put("pageBean", pageBean);
-		}else{
+		} else {
 			this.addActionError("No level2 item found!");
 		}
 		return "adminFindAllByPageSuccess";
 	}
-	
-	public String deleteById(){
+
+	public String deleteById() {
 		DetachedCriteria criteria = DetachedCriteria.forClass(Level2.class);
 		System.out.println("level2_id" + level2.getLevel2_id());
 		criteria.add(Restrictions.eq("level2_id", level2.getLevel2_id()));
 		level2Service.deleteByCriteria(criteria);
 		return "deleteByIdSuccess";
 	}
-	
-	public String addPre(){
+
+	public String addPre() {
 		List<Level1> level1s = level2Service.findAllLevel1();
-		if(null == level1s || level1s.size()== 0){
+		if (null == level1s || level1s.size() == 0) {
 			this.addActionError("Please add Level1 menu first!");
 			return "addPreNoLevel1Failed";
 		}
 		List<String> level1Names = new ArrayList<String>();
-		for(Level1 l : level1s){
+		for (Level1 l : level1s) {
 			level1Names.add(l.getLevel1_name());
 		}
 		ActionContext.getContext().put("level1s", level1Names);
 		return "addPreSuccess";
 	}
-	
-	public String addAfter(){
+
+	public String addAfter() {
 		Level1 level1 = level2Service.findLevel1ByName(level2_belongname);
-		if(level1 == null){
-			this.addActionError("Selceted level1 doesn't exist!");
+		if (level1 == null) {
+			this.addActionError("Selected level1 doesn't exist!");
 			return "addAfterFailed";
 		}
 		level2.setLevel2_belonging(level1);
 		level2Service.addLevel2(level2);
 		return "addAfterSuccess";
+	}
+
+	public String editByIdPre() {
+		DetachedCriteria criteria = DetachedCriteria.forClass(Level2.class);
+		criteria.add(
+				Restrictions.eq("level2_id", level2.getLevel2_id()));
+		Level2 existLevel2 = level2Service.findLevel2ByCriteria(criteria);
+		if (null == existLevel2) {
+			this.addActionError("No level2 menu exist! Try again!");
+			return "editByIdPreFailed";
+		}
+		ActionContext.getContext().put("existlevel2", existLevel2);
+		List<Level1> level1s = level2Service.findAllLevel1();
+		if (null == level1s || level1s.size() == 0) {
+			this.addActionError("Please add Level1 menu first!");
+			return "editByIdPreFailed";
+		}
+		List<String> level1Names = new ArrayList<String>();
+		for (Level1 l : level1s) {
+			level1Names.add(l.getLevel1_name());
+		}
+		ActionContext.getContext().put("level1s", level1Names);
+		return "editByIdPreSuccess";
+	}
+	
+	public String editById2Post(){
+		Level1 level1 = level2Service.findLevel1ByName(level2_belongname);
+		if(null == level1){
+			this.addActionError("level1 doesn't exist!");
+			return "editById2PostFailed";
+		}
+		level2.setLevel2_belonging(level1);
+		level2Service.updateLevel2(level2);
+		return "editById2PostSuccess";
 	}
 }

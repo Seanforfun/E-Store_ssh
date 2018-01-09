@@ -9,23 +9,31 @@
 		<script language="javascript" src="${pageContext.request.contextPath}/js/check.js"></script>
 	</HEAD>
 	<body>
-		<s:form id="userAction_save_do" name="Form1" namespace="/" action="level1_editByIdPrePost" method="post" enctype="multipart/form-data">
+		<s:form id="userAction_save_do" name="Form1" namespace="/" action="level2_editById2Post" method="post" enctype="multipart/form-data">
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
-				<s:hidden name="level1_id" value="%{model.level1_id}" id="userID"/>
+				<s:hidden name="level2_id" value="%{#existlevel2.level2_id}" id="userID"/>
 				<tr>
 					<td class="ta_01" align="center" bgColor="#afd1f3" colSpan="4"
 						height="26">
-						<strong><STRONG>Edit Level 1</STRONG>
+						<strong><STRONG>Edit Level 2</STRONG>
 						</strong>
 					</td>
 				</tr>
 				<tr>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
-						Level1 name:
+						Level2 name:
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<s:textfield name="level1_name" value="%{model.level1_name}" id="" cssClass="bg" />
+						<s:textfield name="level2_name" value="%{#existlevel2.level2_name}" id="" cssClass="bg" />
+					</td>
+				</tr>
+				<tr>
+					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
+						Level2 belonging:
+					</td>
+					<td class="ta_01" bgColor="#ffffff" colspan="3">
+						<s:select list="level1s" name="level2_belongname" value="#existlevel2.level2_belonging.level1_name"/>
 					</td>
 				</tr>
 				<TR>

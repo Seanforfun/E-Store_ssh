@@ -58,4 +58,12 @@ public class Level2Service {
 	public void addLevel2(Level2 level2) {
 		level2Dao.add(level2);
 	}
+
+	public Level2 findLevel2ByCriteria(DetachedCriteria criteria) {
+		return  level2Dao.findLevel2ByCriteria(criteria);
+	}
+
+	public void updateLevel2(Level2 level2) {
+		level2Dao.update(level2);
+	}
 }

@@ -65,7 +65,11 @@
         	<result name="addPreNoLevel1Failed">/admin/home.jsp</result>
         	<result name="addPreSuccess">/admin/level2/add.jsp</result>
         	<result name="addAfterSuccess" type="redirectAction">/level2_adminFindAllByPage.action?page=1</result>
-        	<result name="addAfterFailed">/admin/home.jsp</result>
+        	<result name="addAfterFailed">/admin/welcome.jsp</result>
+        	<result name="editByIdPreFailed">/admin/welcome.jsp</result>
+        	<result name="editByIdPreSuccess">/admin/level2/edit.jsp</result>
+        	<result name="editById2PostSuccess" type="redirectAction">/level2_adminFindAllByPage.action?page=1</result>
+        	<result name="editById2PostFailed">/admin/welcome.jsp</result>
         </action>
     </package>
 
