@@ -9,13 +9,13 @@
 		<script language="javascript" src="${pageContext.request.contextPath}/js/check.js"></script>
 	</HEAD>
 	<body>
-		<s:form id="userAction_save_do" namespace="/"  name="Form1" action="level1_add" method="post" enctype="multipart/form-data">
+		<s:form id="userAction_save_do" namespace="/"  name="Form1" action="level2_addAfter" method="post" enctype="multipart/form-data">
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
 				<tr>
 					<td class="ta_01" align="center" bgColor="#afd1f3" colSpan="4"
 						height="26">
-						<strong><STRONG>Add level1 column</STRONG>
+						<strong><STRONG>Add level2 column</STRONG>
 						</strong>
 					</td>
 				</tr>
@@ -26,10 +26,18 @@
 				</tr>
 				<tr>
 					<td align="center" bgColor="#f5fafe" class="ta_01">
-						Level1 column name:
+						Level2 column name:
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
-						<s:textfield name="level1_name" value="" id="" cssClass="bg"/>
+						<s:textfield name="level2_name" value="" id="" cssClass="bg"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" bgColor="#f5fafe" class="ta_01">
+						Level2 belonging:
+					</td>
+					<td class="ta_01" bgColor="#ffffff">
+						<s:select list="level1s" name="level2_belongname"/>
 					</td>
 				</tr>
 				<TR>

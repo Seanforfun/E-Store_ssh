@@ -9,8 +9,8 @@
 <script language="javascript"
 	src="${pageContext.request.contextPath}/js/public.js"></script>
 <script type="text/javascript">
-	function addLevel1() {
-		window.location.href = "${pageContext.request.contextPath}/admin/level2/add.jsp";
+	function addLevel2() {
+		window.location.href = "${pageContext.request.contextPath}/level2_addPre";
 	}
 </script>
 </HEAD>
@@ -83,14 +83,12 @@
 					</s:iterator>
 				</td>
 			</tr>
-			<s:if test="#session.level1Size != null">
-				<tr>
-					<td class="ta_01" align="right">
-						<button type="button" id="add" name="add" value="Add"
-							class="button_add" onclick="addLevel2()">Add</button>
-					</td>
-				</tr>
-			</s:if>
+			<tr>
+				<td class="ta_01" align="right">
+					<button type="button" id="add" name="add" value="Add"
+						class="button_add" onclick="addLevel2()">Add</button>
+				</td>
+			</tr>
 		</TBODY>
 	</table>
 </body>

@@ -62,6 +62,10 @@
         <action name="level2_*" class="level2Action" method="{1}">
         	<result name="adminFindAllByPageSuccess">/admin/level2/list.jsp</result>
         	<result name="deleteByIdSuccess" type="redirectAction">/level2_adminFindAllByPage.action?page=1</result>
+        	<result name="addPreNoLevel1Failed">/admin/home.jsp</result>
+        	<result name="addPreSuccess">/admin/level2/add.jsp</result>
+        	<result name="addAfterSuccess" type="redirectAction">/level2_adminFindAllByPage.action?page=1</result>
+        	<result name="addAfterFailed">/admin/home.jsp</result>
         </action>
     </package>
 

@@ -29,4 +29,13 @@ public class Level1Dao extends HibernateDaoSupport{
 		this.getHibernateTemplate().update(level1);
 	}
 
+	@SuppressWarnings("unchecked")
+	public Level1 findByName(String level2_belongname) {
+		List<Level1> level1s = this.getHibernateTemplate().find("from Level1 where level1_name = ?", level2_belongname);
+		if(level1s.size() != 0 && level1s != null){
+			return level1s.get(0);
+		}
+		return null;
+	}
+
 }

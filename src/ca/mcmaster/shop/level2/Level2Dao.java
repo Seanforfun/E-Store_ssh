@@ -36,4 +36,8 @@ public class Level2Dao extends HibernateDaoSupport {
 			this.getHibernateTemplate().delete(level2s.get(0));
 		}
 	}
+
+	public void add(Level2 level2) {
+		this.getHibernateTemplate().save(level2);
+	}
 }

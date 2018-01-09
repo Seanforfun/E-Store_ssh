@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.opensymphony.xwork2.ActionContext;
 
+import ca.mcmaster.shop.level1.Level1;
+import ca.mcmaster.shop.level1.Level1Dao;
 import ca.mcmaster.shop.utils.PageInfoBean;
 
 /**
@@ -19,6 +21,9 @@ import ca.mcmaster.shop.utils.PageInfoBean;
 public class Level2Service {
 	@Resource(name = "level2Dao")
 	private Level2Dao level2Dao;
+	
+	@Resource(name="level1Dao")
+	private Level1Dao level1Dao;
 
 	public PageInfoBean<Level2> findAllByPage(Integer page) {
 		PageInfoBean<Level2> pageBean = new PageInfoBean<Level2>();
@@ -38,5 +43,19 @@ public class Level2Service {
 
 	public void deleteByCriteria(DetachedCriteria criteria) {
 		level2Dao.deleteByCriteria(criteria);
+	}
+
+	public List<Level1> findAllLevel1() {
+		List<Level1> level1s = level1Dao.findAll();
+		return level1s;
+	}
+
+	public Level1 findLevel1ByName(String level2_belongname) {
+		Level1 level1 = level1Dao.findByName(level2_belongname);
+		return level1;
+	}
+
+	public void addLevel2(Level2 level2) {
+		level2Dao.add(level2);
 	}
 }
