@@ -25,8 +25,6 @@ public class PageHibernateCallback<T> implements HibernateCallback<List<T>>{
 		this.pageSize = pageSize;
 	}
 
-
-
 	@SuppressWarnings("unchecked")
 	public List<T> doInHibernate(Session session) throws HibernateException,
 			SQLException {

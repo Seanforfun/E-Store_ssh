@@ -25,6 +25,15 @@ public class ProductAction extends ActionSupport implements
 	private Integer level2_id;
 	private Integer level_id;
 	private Integer level;
+	private Integer page;
+
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
 
 	public Integer getLevel_id() {
 		return level_id;
@@ -91,7 +100,7 @@ public class ProductAction extends ActionSupport implements
 			return "findProductByIdFail";
 		}
 	}
-	
+
 	public String findProductBylevel1_id() {
 		level = 1;
 		// Find all of level1
@@ -103,7 +112,7 @@ public class ProductAction extends ActionSupport implements
 		ActionContext.getContext().put("pageBean", pageBean);
 		return "findProductBylevel1_idSuccess";
 	}
-	
+
 	public String findProductBylevel2_id() {
 		level = 2;
 		List<Level1> level1List = productService.findAllLevel1();
@@ -120,14 +129,20 @@ public class ProductAction extends ActionSupport implements
 		PageInfoBean<Product> pageBean = null;
 		if (level == 1) {
 			level1_id = level_id;
-			pageBean = productService.findProductsByPage(
-					pageNum, level_id, 1);
+			pageBean = productService.findProductsByPage(pageNum, level_id, 1);
 		} else {
 			level2_id = level_id;
-			pageBean = productService.findProductsByPage(
-					pageNum, level_id, 2);
+			pageBean = productService.findProductsByPage(pageNum, level_id, 2);
 		}
 		ActionContext.getContext().put("pageBean", pageBean);
 		return "findProductByLevelSuccess";
+	}
+
+	public String adminFindAllByPage() {
+		PageInfoBean<Product> pageBean = productService.findAllByPage(page);
+		if(null != pageBean){
+			ActionContext.getContext().put("pageBean", pageBean);
+		}
+		return "adminFindAllByPageSuccess";
 	}
 }

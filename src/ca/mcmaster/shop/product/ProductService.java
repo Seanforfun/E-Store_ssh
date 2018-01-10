@@ -80,4 +80,22 @@ public class ProductService {
 		Product product = productDao.findProductById(product_id);
 		return product;
 	}
+
+	public PageInfoBean<Product> findAllByPage(Integer page) {
+		PageInfoBean<Product> pageBean = new PageInfoBean<Product>();
+		pageBean.setCurrentPage(page);
+		Integer totalInfo = productDao.findAllNum();
+		pageBean.setTotalInfo(totalInfo);
+		pageBean.setPageLimit(10);
+		if(totalInfo % pageBean.getPageLimit() == 0){
+			pageBean.setTotalPageNum(totalInfo/pageBean.getPageLimit());
+		}else{
+			pageBean.setTotalPageNum(totalInfo/pageBean.getPageLimit() + 1);
+		}
+		List<Product> products = productDao.findAllProductByPage(pageBean);
+		if(null != products){
+			pageBean.setList(products);
+		}
+		return pageBean;
+	}
 }

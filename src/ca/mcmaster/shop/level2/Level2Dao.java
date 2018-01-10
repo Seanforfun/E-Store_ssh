@@ -45,7 +45,6 @@ public class Level2Dao extends HibernateDaoSupport {
 	public Level2 findLevel2ByCriteria(DetachedCriteria criteria) {
 		List<Level2> level2s = this.getHibernateTemplate().findByCriteria(criteria);
 		if(null != level2s && level2s.size() != 0){
-			System.out.println("==========" + level2s.get(0));
 			return level2s.get(0);
 		}
 		return null;
