@@ -34,6 +34,8 @@
         	<result name="addPreSuccess">/admin/product/add.jsp</result>
         	<result name="addPostSuccess" type="redirectAction">/product_adminFindAllByPage.action?page=1</result>
         	<result name="deleteSuccess" type="redirectAction">/product_adminFindAllByPage.action?page=1</result>
+        	<result name="editByIdPreSuccess">/admin/product/edit.jsp</result>
+        	<result name="editById2PostSuccess" type="redirectAction">/product_adminFindAllByPage.action?page=1</result>
         </action>
         
         <action name="cart_*" class="cartAction" method="{1}">

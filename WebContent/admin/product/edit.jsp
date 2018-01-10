@@ -10,31 +10,71 @@
 		<script language="javascript" src="${pageContext.request.contextPath}/js/check.js"></script>
 	</HEAD>
 	<body>
-		<s:form id="userAction_save_do" name="Form1" namespace="/" action="level2_editById2Post" method="post" enctype="multipart/form-data">
+		<s:form id="userAction_save_do" name="Form1" namespace="/" action="product_editById2Post" method="post" enctype="multipart/form-data">
 			&nbsp;
 			<table cellSpacing="1" cellPadding="5" width="100%" align="center" bgColor="#eeeeee" style="border: 1px solid #8ba7e3" border="0">
-				<s:hidden name="level2_id" value="%{#existlevel2.level2_id}" id="userID"/>
+				<s:hidden name="product_id" value="%{#existProduct.product_id}" id="userID"/>
 				<tr>
 					<td class="ta_01" align="center" bgColor="#afd1f3" colSpan="4"
 						height="26">
-						<strong><STRONG>Edit Level 2</STRONG>
+						<strong><STRONG>Edit Product</STRONG>
 						</strong>
 					</td>
 				</tr>
 				<tr>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
-						Level2 name:
+						Product name:
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<s:textfield name="level2_name" value="%{#existlevel2.level2_name}" id="" cssClass="bg" />
+						<s:textfield name="product_name" value="%{#existProduct.product_name}" id="" cssClass="bg" />
 					</td>
 				</tr>
 				<tr>
 					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
-						Level2 belonging:
+						Product market price:
 					</td>
 					<td class="ta_01" bgColor="#ffffff" colspan="3">
-						<s:select list="level1s" name="level2_belongname" value="#existlevel2.level2_belonging.level1_name"/>
+						<s:textfield name="product_market_price" value="%{#existProduct.product_market_price}" id="" cssClass="bg" />
+					</td>
+				</tr>
+				<tr>
+					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
+						Product store price:
+					</td>
+					<td class="ta_01" bgColor="#ffffff" colspan="3">
+						<s:textfield name="product_store_price" value="%{#existProduct.product_store_price}" id="" cssClass="bg" />
+					</td>
+				</tr>
+				<tr>
+					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
+						Product belonging:
+					</td>
+					<td class="ta_01" bgColor="#ffffff" colspan="3">
+						<s:select list="level2s" name="level2_name" value="%{#existProduct.product_belonging.level2_name}"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
+						Hot:
+					</td>
+					<td class="ta_01" bgColor="#ffffff" colspan="3">
+						<s:radio list="%{#{'1':'Hot', '0':'Not Hot' } }" name="product_ishot" value="%{#existProduct.product_ishot}"/>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" bgColor="#f5fafe" class="ta_01">
+						Photo:
+					</td>
+					<td class="ta_01" bgColor="#ffffff">
+						<s:file name="upload"/>
+					</td>
+				</tr>
+				<tr>
+					<td width="18%" align="center" bgColor="#f5fafe" class="ta_01">
+						Product desc:
+					</td>
+					<td class="ta_01" bgColor="#ffffff" colspan="3">
+						<s:textarea name="product_desc" cols="30" rows="3" id="userAction_save_do_remark" style="WIDTH: 96%" value="%{#existProduct.product_desc}"/>
 					</td>
 				</tr>
 				<TR>

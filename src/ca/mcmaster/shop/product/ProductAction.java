@@ -210,7 +210,6 @@ public class ProductAction extends ActionSupport implements
 		product.setProduct_belonging(level2);
 		if(level2 != null){
 			realPath = realPath.concat("\\" + level2.getLevel2_id().toString() + "\\" + uploadFileName);
-			System.out.println(realPath);
 			File diskFile = new File(realPath);
 			FileUtils.copyFile(upload, diskFile);
 			product.setProduct_photo("products/" + level2.getLevel2_id().toString() + "/" + uploadFileName);
@@ -222,5 +221,41 @@ public class ProductAction extends ActionSupport implements
 	public String delete(){
 		productService.delete(product);
 		return "deleteSuccess";
+	}
+	
+	public String editByIdPre(){
+		Product existProduct = productService.findProductById(product.getProduct_id());
+		ActionContext.getContext().put("existProduct", existProduct);
+		List<Level2> level2s = productService.findAllLevel2();
+		List<String> level2Names = new ArrayList<String>();
+		for(Level2 l : level2s){
+			level2Names.add(l.getLevel2_name());
+		}
+		ActionContext.getContext().put("level2s", level2Names);
+		return "editByIdPreSuccess";
+	}
+	
+	public String editById2Post() throws IOException{
+		Product existProduct = productService.findProductById(product.getProduct_id());
+		DetachedCriteria criteria = DetachedCriteria.forClass(Level2.class);
+		criteria.add(Restrictions.eq("level2_name", level2_name));
+		Level2 level2 = productService.findLevel2ByName(criteria);
+		if(null != existProduct){
+			existProduct.setProduct_name(product.getProduct_name());
+			existProduct.setProduct_market_price(product.getProduct_market_price());
+			existProduct.setProduct_store_price(product.getProduct_store_price());
+			existProduct.setProduct_belonging(level2);
+			existProduct.setProduct_desc(product.getProduct_desc());
+			existProduct.setProduct_ishot(product.getProduct_ishot());
+			if(null != upload){
+				String realPath = ServletActionContext.getServletContext().getRealPath("/products");
+				realPath = realPath.concat("\\" + level2.getLevel2_id().toString() + "\\" + uploadFileName);
+				File diskFile = new File(realPath);
+				FileUtils.copyFile(upload, diskFile);
+				existProduct.setProduct_photo("products/" + level2.getLevel2_id().toString() + "/" + uploadFileName);
+			}
+			productService.update(existProduct);
+		}
+		return "editById2PostSuccess";
 	}
 }

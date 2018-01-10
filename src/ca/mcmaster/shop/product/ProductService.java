@@ -122,4 +122,8 @@ public class ProductService {
 	public void delete(Product product) {
 		productDao.delete(product);
 	}
+
+	public void update(Product existProduct) {
+		productDao.update(existProduct);
+	}
 }
