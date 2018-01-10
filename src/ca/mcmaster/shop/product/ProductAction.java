@@ -1,10 +1,19 @@
 package ca.mcmaster.shop.product;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.io.FileUtils;
+import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
+
 import ca.mcmaster.shop.level1.Level1;
+import ca.mcmaster.shop.level2.Level2;
 import ca.mcmaster.shop.utils.PageInfoBean;
 
 import com.opensymphony.xwork2.ActionContext;
@@ -26,6 +35,43 @@ public class ProductAction extends ActionSupport implements
 	private Integer level_id;
 	private Integer level;
 	private Integer page;
+	private String level2_name;
+	
+	private File upload;
+	private String uploadContentType;
+	private String uploadFileName;
+	
+	public String getLevel2_name() {
+		return level2_name;
+	}
+
+	public void setLevel2_name(String level2_name) {
+		this.level2_name = level2_name;
+	}
+
+	public File getUpload() {
+		return upload;
+	}
+
+	public void setUpload(File upload) {
+		this.upload = upload;
+	}
+
+	public String getUploadContentType() {
+		return uploadContentType;
+	}
+
+	public void setUploadContentType(String uploadContentType) {
+		this.uploadContentType = uploadContentType;
+	}
+
+	public String getUploadFileName() {
+		return uploadFileName;
+	}
+
+	public void setUploadFileName(String uploadFileName) {
+		this.uploadFileName = uploadFileName;
+	}
 
 	public Integer getPage() {
 		return page;
@@ -144,5 +190,37 @@ public class ProductAction extends ActionSupport implements
 			ActionContext.getContext().put("pageBean", pageBean);
 		}
 		return "adminFindAllByPageSuccess";
+	}
+	
+	public String addPre(){
+		List<Level2> level2s = productService.findAllLevel2();
+		List<String> level2Names = new ArrayList<String>();
+		for(Level2 l : level2s){
+			level2Names.add(l.getLevel2_name());
+		}
+		ActionContext.getContext().put("level2s", level2Names);
+		return "addPreSuccess";
+	}
+	
+	public String addPost() throws IOException{
+		String realPath = ServletActionContext.getServletContext().getRealPath("/products");
+		DetachedCriteria criteria = DetachedCriteria.forClass(Level2.class);
+		criteria.add(Restrictions.eq("level2_name", level2_name));
+		Level2 level2 = productService.findLevel2ByName(criteria);
+		product.setProduct_belonging(level2);
+		if(level2 != null){
+			realPath = realPath.concat("\\" + level2.getLevel2_id().toString() + "\\" + uploadFileName);
+			System.out.println(realPath);
+			File diskFile = new File(realPath);
+			FileUtils.copyFile(upload, diskFile);
+			product.setProduct_photo("products/" + level2.getLevel2_id().toString() + "/" + uploadFileName);
+			productService.addProduct(product);
+		}
+		return "addPostSuccess";
+	}
+	
+	public String delete(){
+		productService.delete(product);
+		return "deleteSuccess";
 	}
 }

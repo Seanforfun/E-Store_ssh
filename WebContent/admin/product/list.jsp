@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
 <HEAD>
 <meta http-equiv="Content-Language" content="zh-cn">
@@ -9,8 +10,8 @@
 <script language="javascript"
 	src="${pageContext.request.contextPath}/js/public.js"></script>
 <script type="text/javascript">
-	function addLevel2() {
-		window.location.href = "${pageContext.request.contextPath}/level2_addPre";
+	function addProduct() {
+		window.location.href = "${pageContext.request.contextPath}/product_addPre";
 	}
 </script>
 </HEAD>
@@ -67,9 +68,9 @@
 									</s:a>
 								</td>
 								<td align="center" style="HEIGHT: 22px">
-									<s:a namespace="/" action="product_deleteById?">
-										<s:param name="product_id" value="%{#product.level2_id}" />
-										<s:param name="product_name" value="%{#product.level2_name}"/>
+									<s:a namespace="/" action="product_delete?">
+										<s:param name="product_id" value="%{#product.product_id}" />
+										<s:param name="product_name" value="%{#product.product_name}"/>
 										<img src="${pageContext.request.contextPath}/images/i_del.gif"
 											width="16" height="16" border="0" style="CURSOR: hand">
 									</s:a></td>
@@ -85,7 +86,7 @@
 								<span class="currentPage"><s:property value="#i"/></span>
 						</s:if>
 						<s:else>
-								<a href="${pageContext.request.contextPath }/level2_adminFindAllByPage?page=<s:property value="#i"/>"><s:property value="#i"/></a>
+								<a href="${pageContext.request.contextPath }/product_adminFindAllByPage?page=<s:property value="#i"/>"><s:property value="#i"/></a>
 						</s:else>
 					</s:iterator>
 				</td>
@@ -93,7 +94,7 @@
 			<tr>
 				<td class="ta_01" align="right">
 					<button type="button" id="add" name="add" value="Add"
-						class="button_add" onclick="addLevel2()">Add</button>
+						class="button_add" onclick="addProduct()">Add</button>
 				</td>
 			</tr>
 		</TBODY>

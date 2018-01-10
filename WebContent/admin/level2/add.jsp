@@ -1,5 +1,6 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <HTML>
 	<HEAD>
 		<meta http-equiv="Content-Language" content="zh-cn">
@@ -15,7 +16,7 @@
 				<tr>
 					<td class="ta_01" align="center" bgColor="#afd1f3" colSpan="4"
 						height="26">
-						<strong><STRONG>Add level2 column</STRONG>
+						<strong><STRONG>Add level2</STRONG>
 						</strong>
 					</td>
 				</tr>
@@ -26,7 +27,7 @@
 				</tr>
 				<tr>
 					<td align="center" bgColor="#f5fafe" class="ta_01">
-						Level2 column name:
+						Level2 name:
 					</td>
 					<td class="ta_01" bgColor="#ffffff">
 						<s:textfield name="level2_name" value="" id="" cssClass="bg"/>

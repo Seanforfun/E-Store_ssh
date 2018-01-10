@@ -31,6 +31,9 @@
         	<result name="findProductByIdFail" type="redirectAction">/index.action</result>
         	<result name="findProductByLevelSuccess">/jsp/list.jsp</result>
         	<result name="adminFindAllByPageSuccess">/admin/product/list.jsp</result>
+        	<result name="addPreSuccess">/admin/product/add.jsp</result>
+        	<result name="addPostSuccess" type="redirectAction">/product_adminFindAllByPage.action?page=1</result>
+        	<result name="deleteSuccess" type="redirectAction">/product_adminFindAllByPage.action?page=1</result>
         </action>
         
         <action name="cart_*" class="cartAction" method="{1}">

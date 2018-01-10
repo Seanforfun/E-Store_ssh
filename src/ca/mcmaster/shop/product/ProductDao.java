@@ -98,4 +98,12 @@ public class ProductDao extends HibernateDaoSupport {
 						(pageLimit * (currentPage - 1)), pageLimit));
 		return products;
 	}
+
+	public void addProduct(Product product) {
+		this.getHibernateTemplate().save(product);
+	}
+
+	public void delete(Product product) {
+		this.getHibernateTemplate().delete(product);
+	}
 }

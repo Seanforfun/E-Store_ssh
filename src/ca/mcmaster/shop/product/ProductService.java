@@ -4,10 +4,13 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Transactional;
 
 import ca.mcmaster.shop.level1.Level1;
 import ca.mcmaster.shop.level1.Level1Dao;
+import ca.mcmaster.shop.level2.Level2;
+import ca.mcmaster.shop.level2.Level2Dao;
 import ca.mcmaster.shop.utils.PageInfoBean;
 
 /**
@@ -21,6 +24,9 @@ public class ProductService {
 
 	@Resource(name = "level1Dao")
 	private Level1Dao level1Dao;
+	
+	@Resource(name="level2Dao")
+	private Level2Dao level2Dao;
 
 	public List<Product> findByHot() {
 		List<Product> list = productDao.findByHot();
@@ -97,5 +103,23 @@ public class ProductService {
 			pageBean.setList(products);
 		}
 		return pageBean;
+	}
+
+	public List<Level2> findAllLevel2() {
+		List<Level2> level2s = level2Dao.findAll();
+		return level2s;
+	}
+
+	public Level2 findLevel2ByName(DetachedCriteria criteria) {
+		Level2 level2 = level2Dao.findLevel2ByCriteria(criteria);
+		return level2;
+	}
+
+	public void addProduct(Product product) {
+		productDao.addProduct(product);
+	}
+
+	public void delete(Product product) {
+		productDao.delete(product);
 	}
 }

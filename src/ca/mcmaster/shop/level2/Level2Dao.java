@@ -53,4 +53,10 @@ public class Level2Dao extends HibernateDaoSupport {
 	public void update(Level2 level2) {
 		this.getHibernateTemplate().update(level2);
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<Level2> findAll() {
+		List<Level2> level2s = this.getHibernateTemplate().find("from Level2");
+		return level2s;
+	}
 }
