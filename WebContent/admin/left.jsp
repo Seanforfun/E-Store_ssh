@@ -1,5 +1,5 @@
 <%@ page language="java" pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -29,6 +29,10 @@
 		d.add("02",0,'Product manage','','','mainFrame');
 		d.add("02-1","02",'Product manage','${pageContext.request.contextPath}/product_adminFindAllByPage?page=1','','mainFrame');
 		d.add("03",0,'Order manage','','','mainFrame');
+		d.add("03-1","03",'Unpayed orders','${pageContext.request.contextPath}/order_adminFindAll?page=1&order_status=0','','mainFrame');
+		d.add("03-2","03",'Payed orders','${pageContext.request.contextPath}/order_adminFindAll?page=1&order_status=1','','mainFrame');
+		d.add("03-3","03",'Undelivered orders','${pageContext.request.contextPath}/order_adminFindAll?page=1&order_status=2','','mainFrame');
+		d.add("03-4","03",'Delivered orders','${pageContext.request.contextPath}/order_adminFindAll?page=1&order_status=3','','mainFrame');
 		d.add("04",0,'Level1 manage','','','mainFrame');
 		d.add("04-1","04",'Level1 manage','${pageContext.request.contextPath}/level1_adminFindAll','','mainFrame');
 		d.add("05",0,'Level2 manage','','','mainFrame');

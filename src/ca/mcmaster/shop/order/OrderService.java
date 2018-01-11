@@ -1,10 +1,14 @@
 package ca.mcmaster.shop.order;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.DetachedCriteria;
 import org.springframework.transaction.annotation.Transactional;
+
+import ca.mcmaster.shop.utils.PageInfoBean;
 
 /**
  * @author SeanForFun email:xiaob6@mcmaster.ca
@@ -43,5 +47,23 @@ public class OrderService {
 	public Set<Order> findOrderByUserId(Integer user_id) {
 		Set<Order> orders = orderDao.findOrderByUserId(user_id);
 		return orders;
+	}
+
+	public PageInfoBean<Order> findAll(Integer status, Integer page) {
+		PageInfoBean<Order> pageBean = new PageInfoBean<Order>();
+		pageBean.setCurrentPage(page);
+		pageBean.setPageLimit(10);
+		Integer total = orderDao.findOrderByStatus(status);
+		if(total != null){
+			pageBean.setTotalInfo(total);
+			if(total % pageBean.getPageLimit() == 0){
+				pageBean.setTotalPageNum(total / pageBean.getPageLimit());
+			}else{
+				pageBean.setTotalPageNum(total / pageBean.getPageLimit() + 1 );
+			}
+			List<Order> orders = orderDao.findAllByStatusAndPage(status, pageBean);
+			pageBean.setList(orders);
+		}
+		return pageBean;
 	}
 }

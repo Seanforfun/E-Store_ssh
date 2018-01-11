@@ -11,6 +11,8 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -19,6 +21,7 @@ import com.opensymphony.xwork2.ModelDriven;
 import ca.mcmaster.shop.cart.Cart;
 import ca.mcmaster.shop.cart.CartItem;
 import ca.mcmaster.shop.user.User;
+import ca.mcmaster.shop.utils.PageInfoBean;
 import ca.mcmaster.shop.utils.PaymentUtil;
 
 /**
@@ -36,7 +39,16 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 	private String p2_Order;
 	private String p3_Amt;
 	private Integer user_id;
+	private Integer page;
 	
+	public Integer getPage() {
+		return page;
+	}
+
+	public void setPage(Integer page) {
+		this.page = page;
+	}
+
 	public Integer getUser_id() {
 		return user_id;
 	}
@@ -178,5 +190,17 @@ public class OrderAction extends ActionSupport implements ModelDriven<Order> {
 			ActionContext.getContext().put("currrentUserOrders", orders);
 		}
 		return "findOrderByIdSuccess";
+	}
+	
+	public String adminFindAll(){
+		PageInfoBean<Order> pageBean = orderService.findAll(order.getOrder_status(), page);
+		if(null != pageBean){
+			ActionContext.getContext().put("pageBean", pageBean);
+		}
+		ActionContext.getContext().put("status", order.getOrder_status().toString());
+		if(pageBean.getList().size() == 0 ){
+			this.addActionMessage("No order found!");
+		}
+		return "adminFindAllSuccess";
 	}
 }
