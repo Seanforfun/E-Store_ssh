@@ -9,6 +9,15 @@
     <constant name="struts.devMode" value="false" />
 	<constant name="struts.ui.theme" value="simple"/>
     <package name="default" namespace="/" extends="struts-default">
+    
+    	<interceptors>
+    		<interceptor name="loginInterceptor" class="ca.mcmaster.shop.interceptor.LoginInterceptor"/>
+    	</interceptors>
+    	
+    	<global-results>
+    		<result name="login">/admin/login.jsp</result>
+    	</global-results>
+    	
         <action name="index" class="indexAction" method="execute">
         	<result name="indexSuccess">/jsp/index.jsp</result>
         </action>
@@ -36,6 +45,10 @@
         	<result name="deleteSuccess" type="redirectAction">/product_adminFindAllByPage.action?page=1</result>
         	<result name="editByIdPreSuccess">/admin/product/edit.jsp</result>
         	<result name="editById2PostSuccess" type="redirectAction">/product_adminFindAllByPage.action?page=1</result>
+        	<interceptor-ref name="loginInterceptor">
+        		<param name="excludeMethods">findProductByLevel, findProductById, findProductBylevel2_id, findProductBylevel1_id</param>
+        	</interceptor-ref>
+        	<interceptor-ref name="defaultStack"/>
         </action>
         
         <action name="cart_*" class="cartAction" method="{1}">
@@ -51,11 +64,19 @@
         	<result name="callbackSuccess" type="redirectAction">/index.action</result>
         	<result name="findOrderByIdSuccess">/jsp/showOrders.jsp</result>
         	<result name="adminFindAllSuccess">/admin/order/list.jsp</result>
+        	<interceptor-ref name="loginInterceptor">
+        		<param name="includeMethods">adminFindAll</param>
+        	</interceptor-ref>
+        	<interceptor-ref name="defaultStack"/>
         </action>
         
         <action name="admin_*" class="adminAction" method="{1}">
         	<result name="loginSuccess" type="redirect">/admin/home.jsp</result>
         	<result name="loginFailed">/admin/login.jsp</result>
+        	<interceptor-ref name="loginInterceptor">
+        		<param name="excludeMethods">login</param>
+        	</interceptor-ref>
+        	<interceptor-ref name="defaultStack"/>
         </action>
         
         <action name="level1_*" class="level1Action" method="{1}">
@@ -64,6 +85,8 @@
         	<result name="deleteByIdSuccess" type="redirectAction">/level1_adminFindAll.action</result>
         	<result name="editByIdPrePostSuccess" type="redirectAction">/level1_adminFindAll.action</result>
         	<result name="editByIdPreSuccess">/admin/level1/edit.jsp</result>
+        	<interceptor-ref name="loginInterceptor"/>
+        	<interceptor-ref name="defaultStack"/>
         </action>
         
         <action name="level2_*" class="level2Action" method="{1}">
@@ -77,6 +100,8 @@
         	<result name="editByIdPreSuccess">/admin/level2/edit.jsp</result>
         	<result name="editById2PostSuccess" type="redirectAction">/level2_adminFindAllByPage.action?page=1</result>
         	<result name="editById2PostFailed">/admin/welcome.jsp</result>
+        	<interceptor-ref name="loginInterceptor"/>
+        	<interceptor-ref name="defaultStack"/>
         </action>
     </package>
 

@@ -24,8 +24,6 @@
 		<!--
 		d = new dTree('d');
 		d.add(0,-1,'E-store admin menu');
-		d.add("01",0,'User Manage','${pageContext.request.contextPath}','','mainFrame');
-		d.add("01-1","01",'User Manage','${pageContext.request.contextPath}','','mainFrame');
 		d.add("02",0,'Product manage','','','mainFrame');
 		d.add("02-1","02",'Product manage','${pageContext.request.contextPath}/product_adminFindAllByPage?page=1','','mainFrame');
 		d.add("03",0,'Order manage','','','mainFrame');
